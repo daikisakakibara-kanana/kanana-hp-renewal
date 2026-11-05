@@ -20,11 +20,15 @@
 
 色は紺（文字）と青緑（アクセント1色）。書体は M PLUS 2（和文）と Outfit（英数字）。
 
+## 画像
+- `assets/img/hero-sea.jpg`（と `-1200`）: トップの写真。Unsplash の画像 `photo-1518837695005-2083093ee35b`（images.unsplash.com から取得、Unsplash License）
+- `assets/img/representative.jpg`: 代表写真
+- `assets/img/work-pioneer.jpg`: 実績（株式会社パイオニア）のスクリーンショット
+
 ## 公開（Cloudflare Pages）
 Workers & Pages → Create → Pages → Connect to Git → このリポジトリ。Build command は空欄、Build output directory は `public`。
 
 ## 残タスク
-- [ ] トップの横長写真（21:9）を選んで `public/assets/img/` に配置し、`index.html` の `hero__photo--empty` を差し替える
 - [ ] 料金は仮の金額。確定させる（根拠と条件は `docs/pricing.md`）
 - [ ] 制作実績（株式会社パイオニア）の掲載についてクライアントの了承を得る
 - [ ] お問い合わせフォームの方式決定（現状は現行サイトのフォームへリンク）
