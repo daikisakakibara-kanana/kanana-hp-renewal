@@ -2,47 +2,52 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>株式会社Kanana</title>
-<meta name="description" content="株式会社Kananaは、受託開発・SES事業・フリーランスプラットフォーム「Kanana Works」を運営するIT企業です。">
+<meta name="description" content="株式会社Kananaは、ホームページ制作・受託開発・SES事業・フリーランスプラットフォーム「Kanana Works」を運営するIT企業です。">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   Foundations（デザインの基準値）
-   - 色・文字サイズ・余白は、ここにある値以外を使わない。
-   - 増やすときは先にここを直す。
+   Kanana Foundations
+   コンセプト: 「設計図」。12カラムのレイアウトグリッド・定規・寸法の注釈を
+   ページの地に薄く見せ、HPをつくる会社であることを構造そのもので伝える。
+   色・文字サイズ・余白は、ここにある値以外を使わない。
    ========================================================================== */
 :root {
-  --header-h: 84px;
+  --header-h: 76px;
 
-  /* Color：アクセント色を持たず、濃淡と罫線だけで組む */
-  --ground: #f9f9f7;
-  --ground-2: #eff0ed;
+  /* Color */
+  --ground: #f7f7f4;
+  --ground-2: #ecede9;
   --surface: #ffffff;
-  --ink: #22262b;
-  --ink-2: rgba(34, 38, 43, 0.74);
-  --ink-3: rgba(34, 38, 43, 0.6);
-  --line: rgba(34, 38, 43, 0.14);
-  --line-strong: rgba(34, 38, 43, 0.3);
+  --ink: #1f2329;
+  --ink-2: rgba(31, 35, 41, 0.74);
+  --ink-3: rgba(31, 35, 41, 0.56);
+  --line: rgba(31, 35, 41, 0.13);
+  --line-strong: rgba(31, 35, 41, 0.3);
+  --accent: #2b44d6;          /* 設計図の青。注釈・グリッド・強調の1点にだけ使う */
+  --accent-soft: rgba(43, 68, 214, 0.08);
+  --grid: rgba(43, 68, 214, 0.07);
   --on-ink: #ffffff;
-  --sample: #fff4c2; /* サンプル文言のマーカー。本番では使わない */
-  --sample-ink: #22262b;
+  --sample: #fff1b8;          /* サンプル文言のマーカー。本番では使わない */
 
   /* Type */
-  --font-jp: 'Noto Sans JP', 游ゴシック体, YuGothic, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  --font-jp: 'IBM Plex Sans JP', 'Hiragino Kaku Gothic ProN', 游ゴシック体, YuGothic, Meiryo, sans-serif;
   --font-en: Archivo, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Type scale：この段以外の font-size を書かない */
-  --fs-display: clamp(34px, 5vw, 76px);
-  --fs-section: clamp(24px, 2.8vw, 36px);
-  --fs-heading: clamp(18px, 1.6vw, 20px);
-  --fs-lead: clamp(17px, 1.5vw, 20px);
+  /* Type scale */
+  --fs-mega: clamp(56px, 11vw, 168px);
+  --fs-display: clamp(30px, 4.3vw, 60px);
+  --fs-section: clamp(26px, 3.2vw, 42px);
+  --fs-heading: clamp(18px, 1.7vw, 22px);
+  --fs-lead: clamp(16px, 1.4vw, 18px);
   --fs-body: 15px;
   --fs-small: 13px;
-  --fs-label: 12px;
+  --fs-mono: 11px;
 
   /* Space scale */
   --sp-1: 8px;
@@ -50,25 +55,28 @@
   --sp-3: 24px;
   --sp-4: 40px;
   --sp-5: 64px;
-  --sp-6: clamp(80px, 10vw, 140px);
+  --sp-6: clamp(88px, 11vw, 160px);
 
-  --container: 1112px;
-  --gutter: clamp(20px, 5vw, 40px);
+  --container: 1160px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --col-gap: 24px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ground: #17191c; --ground-2: #1f2226; --surface: #23262a;
-    --ink: #ecebe6; --ink-2: rgba(236, 235, 230, 0.76); --ink-3: rgba(236, 235, 230, 0.58);
-    --line: rgba(236, 235, 230, 0.14); --line-strong: rgba(236, 235, 230, 0.3);
-    --on-ink: #17191c; --sample: rgba(255, 214, 90, 0.28); --sample-ink: #ecebe6;
+    --ground: #15171b; --ground-2: #1c1f24; --surface: #22252b;
+    --ink: #ecebe6; --ink-2: rgba(236, 235, 230, 0.76); --ink-3: rgba(236, 235, 230, 0.56);
+    --line: rgba(236, 235, 230, 0.13); --line-strong: rgba(236, 235, 230, 0.3);
+    --accent: #8c9dff; --accent-soft: rgba(140, 157, 255, 0.12); --grid: rgba(140, 157, 255, 0.07);
+    --on-ink: #15171b; --sample: rgba(255, 214, 90, 0.26);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --ground: #17191c; --ground-2: #1f2226; --surface: #23262a;
-  --ink: #ecebe6; --ink-2: rgba(236, 235, 230, 0.76); --ink-3: rgba(236, 235, 230, 0.58);
-  --line: rgba(236, 235, 230, 0.14); --line-strong: rgba(236, 235, 230, 0.3);
-  --on-ink: #17191c; --sample: rgba(255, 214, 90, 0.28); --sample-ink: #ecebe6;
+  --ground: #15171b; --ground-2: #1c1f24; --surface: #22252b;
+  --ink: #ecebe6; --ink-2: rgba(236, 235, 230, 0.76); --ink-3: rgba(236, 235, 230, 0.56);
+  --line: rgba(236, 235, 230, 0.13); --line-strong: rgba(236, 235, 230, 0.3);
+  --accent: #8c9dff; --accent-soft: rgba(140, 157, 255, 0.12); --grid: rgba(140, 157, 255, 0.07);
+  --on-ink: #15171b; --sample: rgba(255, 214, 90, 0.26);
   color-scheme: dark;
 }
 
@@ -82,281 +90,481 @@ body {
   font-family: var(--font-jp);
   font-size: var(--fs-body);
   line-height: 1.9;
-  letter-spacing: 0.04em;
-  font-feature-settings: "palt";
+  letter-spacing: 0.03em;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, p, dl, dd, ul { margin: 0; padding: 0; }
-ul { list-style: none; }
+h1, h2, h3, p, dl, dd, ul, ol, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3 { text-wrap: balance; }
 
 .container {
   width: 100%; max-width: calc(var(--container) + var(--gutter) * 2); margin: 0 auto;
   padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
   padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
 }
-.en { font-family: var(--font-en); letter-spacing: 0.02em; }
+.mono { font-family: var(--font-mono); font-size: var(--fs-mono); letter-spacing: 0.04em; }
+.sample { background: linear-gradient(transparent 60%, var(--sample) 60%); }
 
-/* サンプル文言の目印 ----------------------------------------------------- */
-.sample { background: linear-gradient(transparent 62%, var(--sample) 62%); }
+/* 地のレイアウトグリッド（装飾） -------------------------------------------- */
+.page-grid { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.page-grid .container { height: 100%; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); }
+.page-grid span { border-left: 1px solid var(--grid); border-right: 1px solid var(--grid); }
+main, .footer, .header, .sample-note { position: relative; z-index: 1; }
+
+/* サンプル注記 ------------------------------------------------------------- */
 .sample-note {
   background: var(--ink); color: var(--on-ink); font-size: var(--fs-small);
-  text-align: center; line-height: 1.6; padding-block: var(--sp-1);
+  line-height: 1.6; padding-block: var(--sp-1); text-align: center;
   padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
   padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
 }
-.sample-note mark { background: #fff4c2; color: #22262b; padding: 0 4px; }
+.sample-note mark { background: #fff1b8; color: #1f2329; padding: 0 4px; }
 
 /* Header ----------------------------------------------------------------- */
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--ground); }
 .header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ground); }
-.header__inner {
-  height: var(--header-h); display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-}
-.logo { font-family: var(--font-en); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
-.logo span { font-weight: 400; }
-.nav { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-small); font-weight: 700; }
-.nav a:not(.btn):hover { color: var(--ink-3); }
+.header__inner { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.logo { display: inline-flex; align-items: baseline; gap: 6px; font-family: var(--font-en); font-weight: 800; font-size: 22px; font-stretch: 112%; letter-spacing: -0.01em; }
+.logo i { font-style: normal; font-family: var(--font-mono); font-size: var(--fs-mono); font-weight: 400; color: var(--accent); letter-spacing: 0.04em; }
+.nav { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-small); font-weight: 500; }
+.nav a:not(.btn):hover { color: var(--accent); }
 .menu-btn { display: none; }
 
 /* Buttons / links -------------------------------------------------------- */
 .btn {
   display: inline-flex; align-items: center; gap: var(--sp-2);
   background: var(--ink); color: var(--on-ink); font-weight: 700; font-size: var(--fs-small);
-  padding: 12px 24px; transition: opacity .2s;
+  padding: 12px 22px; transition: background .2s;
 }
-.btn:hover { opacity: .82; }
-.btn--lg { padding: 18px 32px; }
-.arrow-link {
-  display: inline-flex; align-items: center; gap: var(--sp-3);
+.btn:hover { background: var(--accent); }
+.btn--lg { padding: 20px 32px; font-size: var(--fs-body); }
+.text-link {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
   font-size: var(--fs-small); font-weight: 700;
-  padding-bottom: 10px; border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 8px; border-bottom: 1px solid var(--line-strong); transition: color .2s, border-color .2s;
 }
-.arrow-link svg, .btn svg { width: 16px; height: 16px; flex: none; transition: transform .2s; }
-.arrow-link:hover svg, .btn:hover svg { transform: translateX(3px); }
-@media (prefers-reduced-motion: reduce) { .arrow-link svg, .btn svg, .btn { transition: none; } }
+.text-link:hover { color: var(--accent); border-color: var(--accent); }
+.btn svg, .text-link svg { width: 14px; height: 14px; flex: none; }
+@media (prefers-reduced-motion: reduce) { .btn, .text-link { transition: none; } }
+
+/* 定規 ------------------------------------------------------------------- */
+.ruler {
+  position: relative; height: 22px; color: var(--ink-3);
+  background:
+    repeating-linear-gradient(90deg, var(--line-strong) 0 1px, transparent 1px 100px) bottom left / 100% 12px no-repeat,
+    repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 10px) bottom left / 100% 5px no-repeat;
+  border-bottom: 1px solid var(--line-strong);
+}
+.ruler span { position: absolute; top: 0; line-height: 1; transform: translateX(4px); }
+
+/* Section label（URLのパス） --------------------------------------------- */
+.path { display: inline-flex; gap: 2px; color: var(--ink-3); margin-bottom: var(--sp-2); }
+.path b { font-weight: 500; color: var(--accent); }
 
 /* Hero ------------------------------------------------------------------- */
-.hero { padding: var(--sp-6) 0 var(--sp-5); }
-.hero__grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--sp-5); align-items: stretch; }
-.hero__kicker, .hero__foot { font-size: var(--fs-small); color: var(--ink-2); }
-.hero__title { font-size: var(--fs-display); font-weight: 700; line-height: 1.38; letter-spacing: 0.02em; margin: var(--sp-4) 0; }
-.hero__side { border-left: 1px solid var(--line-strong); padding-left: var(--sp-4); display: flex; flex-direction: column; justify-content: center; gap: var(--sp-3); }
-.hero__lead { font-size: var(--fs-lead); font-weight: 700; line-height: 1.9; }
-.hero__text { color: var(--ink-2); }
-.hero__links { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-2); }
+.hero { padding: var(--sp-5) 0 var(--sp-6); }
+.hero__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); margin-top: var(--sp-5); align-items: start; }
+.hero__copy { grid-column: 1 / span 7; min-width: 0; }
+.hero__kicker { display: flex; align-items: center; gap: var(--sp-2); color: var(--ink-2); font-size: var(--fs-small); }
+.hero__kicker::before { content: ""; width: 24px; height: 1px; background: var(--accent); flex: none; }
+.hero__title .sample, .contact__title .sample { white-space: nowrap; }
+@media (max-width: 480px) { .hero__title .sample, .contact__title .sample { white-space: normal; } }
+.hero__title { font-size: var(--fs-display); font-weight: 700; line-height: 1.4; letter-spacing: 0.01em; margin: var(--sp-3) 0 var(--sp-4); }
+.hero__lead { font-size: var(--fs-lead); color: var(--ink-2); max-width: 30em; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); margin-top: var(--sp-4); }
+.hero__figure { grid-column: 8 / span 5; min-width: 0; }
 
-.visual {
-  aspect-ratio: 1112 / 400; background: var(--ground-2);
-  display: grid; place-items: center; color: var(--ink-3); font-size: var(--fs-small);
-  border: 1px dashed var(--line-strong);
+/* ブラウザ枠のワイヤー ⇄ 完成 ------------------------------------------- */
+.browser { position: relative; background: var(--surface); border: 1px solid var(--line-strong); }
+.browser__bar { display: flex; align-items: center; gap: var(--sp-2); height: 34px; padding: 0 12px; border-bottom: 1px solid var(--line); }
+.browser__url { flex: 1; min-width: 0; height: 20px; display: flex; align-items: center; padding: 0 10px; background: var(--ground); color: var(--ink-3); overflow: hidden; white-space: nowrap; }
+.browser__body { position: relative; padding: 18px; display: grid; gap: 14px; }
+.w-nav { display: flex; justify-content: space-between; align-items: center; }
+.w-logo { width: 54px; height: 12px; }
+.w-links { display: flex; gap: 8px; }
+.w-links i { width: 26px; height: 6px; }
+.w-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; align-items: center; }
+.w-text { display: grid; gap: 8px; }
+.w-h { height: 14px; width: 92%; }
+.w-h + .w-h { width: 70%; }
+.w-p { height: 6px; width: 86%; }
+.w-btn { width: 64px; height: 18px; margin-top: 6px; }
+.w-img { aspect-ratio: 4 / 3; }
+.w-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.w-cols i { aspect-ratio: 16 / 10; }
+.w-logo, .w-links i, .w-h, .w-p, .w-btn, .w-img, .w-cols i { display: block; transition: background .45s, border-color .45s; }
+
+/* 状態: ワイヤー */
+.browser[data-state="wire"] :is(.w-logo, .w-links i, .w-h, .w-p, .w-btn, .w-img, .w-cols i) { background: transparent; border: 1px dashed var(--accent); }
+.browser[data-state="wire"] .w-img { background: linear-gradient(to top right, transparent calc(50% - .5px), var(--grid) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)), linear-gradient(to bottom right, transparent calc(50% - .5px), var(--grid) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)); }
+/* 状態: 完成 */
+.browser[data-state="design"] :is(.w-logo, .w-links i, .w-h, .w-p, .w-btn, .w-img, .w-cols i) { border: 1px solid transparent; }
+.browser[data-state="design"] .w-logo, .browser[data-state="design"] .w-h { background: var(--ink); }
+.browser[data-state="design"] .w-links i, .browser[data-state="design"] .w-p { background: var(--line-strong); }
+.browser[data-state="design"] .w-btn { background: var(--accent); }
+.browser[data-state="design"] .w-img, .browser[data-state="design"] .w-cols i { background: var(--ground-2); }
+
+.notes { position: absolute; inset: 0; pointer-events: none; transition: opacity .45s; }
+.browser[data-state="design"] .notes { opacity: 0; }
+.note { position: absolute; color: var(--accent); background: var(--surface); padding: 0 4px; line-height: 1.4; white-space: nowrap; }
+.note--h { top: 44px; left: 18px; }
+.note--img { top: 44px; right: 18px; }
+.note--gap { bottom: 6px; left: 18px; }
+
+.toggle { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: var(--sp-2); }
+.toggle__group { display: inline-flex; border: 1px solid var(--line-strong); }
+.toggle button { font: inherit; font-size: var(--fs-small); font-weight: 500; padding: 6px 16px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+.toggle__caption { color: var(--ink-3); }
+@media (prefers-reduced-motion: reduce) {
+  .w-logo, .w-links i, .w-h, .w-p, .w-btn, .w-img, .w-cols i, .notes { transition: none; }
 }
+
+/* 大きな文字の帯 --------------------------------------------------------- */
+.mega { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.mega p {
+  font-family: var(--font-en); font-weight: 800; font-stretch: 125%; font-size: var(--fs-mega);
+  line-height: 1; letter-spacing: -0.02em; padding: var(--sp-3) 0 var(--sp-2); white-space: nowrap;
+  color: transparent; -webkit-text-stroke: 1px var(--line-strong);
+}
+.mega p span { color: var(--ink); -webkit-text-stroke: 0; }
 
 /* Section ---------------------------------------------------------------- */
-.section { padding: var(--sp-6) 0; border-top: 1px solid var(--line); }
-.section:first-of-type { border-top: 0; }
-.section__head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--sp-4); margin-bottom: var(--sp-5); }
-.label { display: block; font-family: var(--font-en); font-size: var(--fs-label); font-weight: 600; color: var(--ink-2); letter-spacing: 0.06em; margin-bottom: var(--sp-2); }
-.section__title { font-size: var(--fs-section); font-weight: 700; line-height: 1.5; }
-.section__desc { max-width: 420px; color: var(--ink-2); }
+.section { padding: var(--sp-6) 0; }
+.section + .section { border-top: 1px solid var(--line); }
+.section__head { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); margin-bottom: var(--sp-5); align-items: end; }
+.section__head > div { grid-column: 1 / span 7; }
+.section__head > p { grid-column: 9 / span 4; color: var(--ink-2); }
+.section__title { font-size: var(--fs-section); font-weight: 700; line-height: 1.45; }
 
-/* Business --------------------------------------------------------------- */
-.biz { border-top: 1px solid var(--line); }
-.biz__row {
-  display: grid; grid-template-columns: 280px 1fr 140px; gap: var(--sp-4);
-  align-items: center; padding: var(--sp-5) 0; border-bottom: 1px solid var(--line);
-}
-.biz__name { font-family: var(--font-en); font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; line-height: 1.3; }
-.biz__name small { display: block; font-family: var(--font-jp); font-size: var(--fs-small); font-weight: 500; color: var(--ink-2); margin-top: var(--sp-1); letter-spacing: 0.04em; }
-.biz__catch { font-size: var(--fs-heading); font-weight: 700; line-height: 1.7; margin-bottom: var(--sp-2); }
-.biz__text { color: var(--ink-2); }
-.biz__points { display: flex; flex-wrap: wrap; gap: var(--sp-1); margin-top: var(--sp-2); }
-.biz__points li { font-size: var(--fs-label); border: 1px solid var(--line-strong); padding: 2px 10px; color: var(--ink-2); }
-.biz__link { justify-self: end; }
+/* Web制作（主力） -------------------------------------------------------- */
+.web { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); row-gap: var(--sp-4); padding: var(--sp-5) 0; border-top: 2px solid var(--ink); }
+.web__head { grid-column: 1 / span 5; }
+.web__no { color: var(--accent); }
+.web__name { font-size: var(--fs-section); font-weight: 700; line-height: 1.4; margin: var(--sp-1) 0 var(--sp-2); }
+.web__catch { font-size: var(--fs-heading); font-weight: 700; line-height: 1.7; margin-bottom: var(--sp-2); }
+.web__text { color: var(--ink-2); }
+.web__spec { grid-column: 7 / span 6; border-top: 1px solid var(--line); }
+.spec { display: grid; grid-template-columns: 120px 1fr; gap: var(--sp-3); padding: var(--sp-2) 0; border-bottom: 1px solid var(--line); }
+.spec dt { color: var(--accent); padding-top: 4px; }
+.spec dd { font-weight: 500; }
+.spec dd small { display: block; font-weight: 400; font-size: var(--fs-small); color: var(--ink-2); }
+
+/* その他の事業 ----------------------------------------------------------- */
+.biz { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); }
+.biz__item { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4) var(--sp-3) var(--sp-4) 0; min-width: 0; }
+.biz__item + .biz__item { border-left: 1px solid var(--line); padding-left: var(--sp-3); }
+.biz__no { color: var(--accent); }
+.biz__name { font-size: var(--fs-heading); font-weight: 700; line-height: 1.5; }
+.biz__name small { display: block; font-family: var(--font-en); font-stretch: 112%; font-size: var(--fs-small); font-weight: 500; color: var(--ink-3); letter-spacing: 0.02em; }
+.biz__text { color: var(--ink-2); flex: 1; }
+.biz__item .text-link { align-self: flex-start; }
+
+/* ご依頼の流れ ----------------------------------------------------------- */
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); }
+.flow li { position: relative; padding: var(--sp-4) var(--sp-3) 0 0; border-top: 1px solid var(--line-strong); }
+.flow li::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; background: var(--ground); border: 1px solid var(--accent); }
+.flow li:first-child::before { background: var(--accent); }
+.flow__no { color: var(--accent); display: block; margin-bottom: var(--sp-1); }
+.flow__name { font-size: var(--fs-heading); font-weight: 700; line-height: 1.5; margin-bottom: var(--sp-1); }
+.flow__text { font-size: var(--fs-small); color: var(--ink-2); line-height: 1.8; }
+
+/* 制作実績 --------------------------------------------------------------- */
+.work { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); row-gap: var(--sp-4); align-items: end; }
+.work__shot { grid-column: 1 / span 8; }
+.work__shot .browser__body { padding: 0; display: block; }
+.work__shot img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.work__meta { grid-column: 9 / span 4; }
+.work__status { display: inline-block; color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px; margin-bottom: var(--sp-2); }
+.work__client { font-size: var(--fs-small); color: var(--ink-2); }
+.work__title { font-size: var(--fs-heading); font-weight: 700; line-height: 1.6; margin: var(--sp-1) 0 var(--sp-3); }
+.work__table { border-top: 1px solid var(--line); margin-bottom: var(--sp-3); }
+.work__table div { display: grid; grid-template-columns: 72px 1fr; gap: var(--sp-2); padding: 10px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-small); }
+.work__table dt { color: var(--ink-3); }
+.work__note { font-size: var(--fs-small); color: var(--ink-3); }
 
 /* Company ---------------------------------------------------------------- */
-.company { display: grid; grid-template-columns: 1fr 1.25fr; gap: var(--sp-5); }
-.portrait {
-  width: 200px; aspect-ratio: 1; background: var(--ground-2); border: 1px dashed var(--line-strong);
-  display: grid; place-items: center; color: var(--ink-3); font-size: var(--fs-label); margin-bottom: var(--sp-3);
-}
-.message__label { font-size: var(--fs-label); color: var(--ink-2); margin-bottom: var(--sp-1); }
-.message__title { font-size: var(--fs-heading); font-weight: 700; line-height: 1.8; margin-bottom: var(--sp-2); }
-.message__text { color: var(--ink-2); margin-bottom: var(--sp-3); }
+.company { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); row-gap: var(--sp-5); }
+.message { grid-column: 1 / span 5; display: grid; grid-template-columns: 120px 1fr; gap: var(--sp-3); align-content: start; }
+.portrait { aspect-ratio: 3 / 4; background: var(--ground-2); border: 1px dashed var(--accent); display: grid; place-items: center; color: var(--accent); max-width: 100%; }
+.message__label { color: var(--ink-3); margin-bottom: var(--sp-1); }
+.message__title { font-size: var(--fs-heading); font-weight: 700; line-height: 1.7; margin-bottom: var(--sp-2); }
+.message__text { color: var(--ink-2); font-size: var(--fs-small); margin-bottom: var(--sp-2); }
 .message__name { font-size: var(--fs-small); font-weight: 700; }
-.table { border-top: 1px solid var(--line); }
-.table__row { display: grid; grid-template-columns: 120px 1fr; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
-.table dt { font-weight: 700; font-size: var(--fs-small); }
-.table dd { color: var(--ink-2); font-size: var(--fs-small); }
-.table dd p + p { margin-top: var(--sp-1); }
+.table { grid-column: 7 / span 6; border-top: 1px solid var(--line-strong); }
+.table__row { display: grid; grid-template-columns: 112px 1fr; gap: var(--sp-3); padding: var(--sp-2) 0; border-bottom: 1px solid var(--line); font-size: var(--fs-small); }
+.table dt { font-weight: 700; }
+.table dd { color: var(--ink-2); }
 
-/* News ------------------------------------------------------------------- */
-.news { border-top: 1px solid var(--line); }
-.news__item { display: grid; grid-template-columns: 110px 120px 1fr; gap: var(--sp-3); align-items: center; padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
-.news__date { font-family: var(--font-en); font-size: var(--fs-small); color: var(--ink-2); }
-.news__tag { font-size: var(--fs-label); border: 1px solid var(--line-strong); padding: 2px 10px; justify-self: start; color: var(--ink-2); }
-.news__title { font-weight: 500; }
-.news__empty { padding: var(--sp-4) 0; color: var(--ink-3); border-bottom: 1px solid var(--line); }
-
-/* Careers ---------------------------------------------------------------- */
-.careers { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); align-items: end; }
-.careers__text { color: var(--ink-2); }
-.careers__status { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-3) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: var(--fs-small); font-weight: 700; margin-top: var(--sp-3); }
-.careers__status span:last-child { font-family: var(--font-en); color: var(--ink-3); }
+/* News / Careers --------------------------------------------------------- */
+.duo { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); row-gap: var(--sp-5); }
+.duo > div:first-child { grid-column: 1 / span 6; }
+.duo > div:last-child { grid-column: 8 / span 5; }
+.duo h2 { font-size: var(--fs-heading); font-weight: 700; margin-bottom: var(--sp-3); }
+.news__empty { padding: var(--sp-3) 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); color: var(--ink-3); font-size: var(--fs-small); }
+.careers__text { color: var(--ink-2); font-size: var(--fs-small); margin-bottom: var(--sp-3); }
+.careers__status { display: flex; justify-content: space-between; align-items: center; padding: var(--sp-2) 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); font-size: var(--fs-small); font-weight: 700; }
+.careers__status .mono { color: var(--accent); }
 
 /* Contact ---------------------------------------------------------------- */
-.contact { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-4); align-items: end; }
-.contact__text { color: var(--ink-2); margin-top: var(--sp-2); max-width: 520px; }
+.contact { background: var(--ink); color: var(--on-ink); }
+.contact__inner { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); row-gap: var(--sp-4); padding-block: var(--sp-6); align-items: end; }
+.contact__copy { grid-column: 1 / span 8; }
+.contact .path { color: color-mix(in srgb, var(--on-ink) 60%, transparent); }
+.contact .path b { color: var(--on-ink); }
+.contact__title { font-size: var(--fs-section); font-weight: 700; line-height: 1.3; margin-bottom: var(--sp-3); }
+.contact__text { color: color-mix(in srgb, var(--on-ink) 75%, transparent); max-width: 34em; }
+.contact__action { grid-column: 9 / span 4; display: grid; gap: var(--sp-2); justify-items: start; }
+.contact .btn { background: var(--on-ink); color: var(--ink); }
+.contact .btn:hover { background: var(--accent); color: var(--on-ink); }
+.contact .sample { background: linear-gradient(transparent 60%, rgba(255, 214, 90, 0.35) 60%); }
+.contact__reply { color: color-mix(in srgb, var(--on-ink) 60%, transparent); }
 
 /* Footer ----------------------------------------------------------------- */
-.footer { background: var(--ground-2); padding: var(--sp-5) 0 var(--sp-3); margin-top: var(--sp-5); }
-.footer__grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--line); }
-.footer__info { margin-top: var(--sp-3); font-size: var(--fs-label); color: var(--ink-2); line-height: 1.8; }
-.footer__info div { display: grid; grid-template-columns: 56px 1fr; gap: var(--sp-2); }
-.footer__col h3 { font-family: var(--font-en); font-size: var(--fs-label); font-weight: 600; margin-bottom: var(--sp-2); }
+.footer { padding: var(--sp-5) 0 var(--sp-3); }
+.footer__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--col-gap); row-gap: var(--sp-4); }
+.footer__brand { grid-column: 1 / span 6; }
+.footer__info { margin-top: var(--sp-2); font-size: var(--fs-small); color: var(--ink-2); line-height: 1.9; }
+.footer__col { grid-column: span 2; }
+.footer__col h3 { color: var(--accent); font-weight: 500; margin-bottom: var(--sp-1); }
 .footer__col li { font-size: var(--fs-small); color: var(--ink-2); line-height: 2.2; }
-.footer__col a:hover { color: var(--ink); }
-.footer__bottom { display: flex; justify-content: space-between; margin-top: var(--sp-5); padding-top: var(--sp-3); border-top: 1px solid var(--line); font-size: var(--fs-label); color: var(--ink-3); }
+.footer__col a:hover { color: var(--accent); }
+.footer__bottom { display: flex; justify-content: space-between; gap: var(--sp-2); margin-top: var(--sp-5); padding-top: var(--sp-2); border-top: 1px solid var(--line); color: var(--ink-3); }
 
-/* Mobile ----------------------------------------------------------------- */
-@media (max-width: 900px) {
-  :root { --header-h: 64px; }
+/* Tablet / Mobile -------------------------------------------------------- */
+@media (max-width: 960px) {
+  .hero__copy, .hero__figure { grid-column: 1 / -1; }
+  .hero__figure { margin-top: var(--sp-5); }
+  .web__head, .web__spec, .work__shot, .work__meta, .message, .table, .duo > div:first-child, .duo > div:last-child, .contact__copy, .contact__action { grid-column: 1 / -1; }
+  .section__head > div, .section__head > p { grid-column: 1 / -1; }
+  .section__head > p { margin-top: var(--sp-2); }
+  .flow { grid-template-columns: 1fr; }
+  .flow li { padding: 0 0 var(--sp-3) var(--sp-4); border-top: 0; border-left: 1px solid var(--line-strong); }
+  .flow li:last-child { padding-bottom: 0; }
+  .flow li::before { top: 6px; left: -5px; }
+  .biz { grid-template-columns: 1fr; }
+  .biz__item, .biz__item + .biz__item { padding: var(--sp-4) 0; border-left: 0; }
+  .biz__item + .biz__item { border-top: 1px solid var(--line); }
+  .footer__brand { grid-column: 1 / -1; }
+  .footer__col { grid-column: span 4; }
+}
+@media (max-width: 760px) {
+  :root { --header-h: 60px; --col-gap: 12px; }
+  .page-grid .container { grid-template-columns: repeat(4, 1fr); }
+  .page-grid span:nth-child(n+5) { display: none; }
   .menu-btn {
     display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px;
-    background: none; border: 1px solid var(--line-strong); color: var(--ink); cursor: pointer; font: inherit;
+    background: none; border: 1px solid var(--line-strong); color: var(--ink); cursor: pointer;
   }
   .nav {
     display: none; position: absolute; top: var(--header-h); left: 0; right: 0;
     flex-direction: column; align-items: stretch; gap: 0; background: var(--ground);
-    padding: var(--sp-2) var(--gutter) var(--sp-3); border-bottom: 1px solid var(--line);
+    padding-block: var(--sp-1) var(--sp-3); border-bottom: 1px solid var(--line);
+    padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
   }
   .nav.is-open { display: flex; }
   .nav a:not(.btn) { padding: var(--sp-2) 0; border-bottom: 1px solid var(--line); }
   .nav .btn { margin-top: var(--sp-3); justify-content: center; }
-  .hero__grid, .company, .careers, .contact { grid-template-columns: 1fr; }
-  .hero__side { border-left: 0; border-top: 1px solid var(--line-strong); padding: var(--sp-4) 0 0; }
-  .visual { aspect-ratio: 4 / 3; }
-  .section__head { flex-direction: column; align-items: flex-start; }
-  .biz__row { grid-template-columns: 1fr; gap: var(--sp-2); padding: var(--sp-4) 0; }
-  .biz__link { justify-self: start; margin-top: var(--sp-1); }
-  .news__item { grid-template-columns: auto auto; }
-  .news__title { grid-column: 1 / -1; }
-  .table__row { grid-template-columns: 96px 1fr; }
-  .footer__grid { grid-template-columns: 1fr 1fr; }
-  .footer__brand { grid-column: 1 / -1; }
-  .footer__bottom { flex-direction: column; gap: var(--sp-1); }
+  .ruler span:nth-child(n+4) { display: none; }
+  .message { grid-template-columns: 96px 1fr; }
+  .spec { grid-template-columns: 1fr; gap: 2px; }
+  .table__row { grid-template-columns: 88px 1fr; gap: var(--sp-2); }
+  .footer__col { grid-column: span 6; }
+  .footer__bottom { flex-direction: column; }
 }
 </style>
 </head>
 <body>
 
+<div class="page-grid" aria-hidden="true">
+  <div class="container"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+
 <p class="sample-note"><mark>黄色マーカー</mark>の文言はサンプルです。会社情報・事業名・連絡先は現行サイト（kanana-tech.jp）の内容です。</p>
 
 <header class="header">
   <div class="container header__inner">
-    <a href="#top" class="logo" aria-label="株式会社Kanana トップ">Kanana<span>, inc.</span></a>
+    <a href="#top" class="logo" aria-label="株式会社Kanana トップ">Kanana<i>inc.</i></a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="メニューを開く">
       <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 6h16M2 14h16" stroke="currentColor" stroke-width="1.5"/></svg>
     </button>
     <nav class="nav" id="nav" aria-label="メイン">
+      <a href="#service">事業</a>
+      <a href="#flow">ご依頼の流れ</a>
+      <a href="#works">制作実績</a>
       <a href="#company">会社概要</a>
-      <a href="#business">事業</a>
-      <a href="#news">お知らせ</a>
-      <a href="#careers">採用情報</a>
       <a href="#contact" class="btn">お問い合わせ</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero">
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
     <div class="container">
+      <div class="ruler mono" aria-hidden="true"><span style="left:0">0</span><span style="left:25%">290</span><span style="left:50%">580</span><span style="left:75%">870</span><span style="left:calc(100% - 44px)">1160px</span></div>
       <div class="hero__grid">
-        <div>
-          <p class="hero__kicker">株式会社Kanana</p>
-          <h1 class="hero__title"><span class="sample">自走する技術者が、</span><br><span class="sample">事業を前に進める。</span></h1>
-          <p class="hero__foot en">Kanana, inc.</p>
-        </div>
-        <div class="hero__side">
-          <p class="hero__lead"><span class="sample">Kananaは、AIを使いこなすエンジニアの力で、現場で使われるシステムをつくる会社です。</span></p>
-          <p class="hero__text"><span class="sample">受託開発からエンジニアの参画支援まで。技術者が自立して力を発揮できる場をつくっています。</span></p>
-          <div class="hero__links">
-            <a href="#business" class="arrow-link">事業を知る<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
-            <a href="#company" class="arrow-link">会社を知る<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        <div class="hero__copy">
+          <p class="hero__kicker">株式会社Kanana ／ ホームページ制作・システム開発</p>
+          <h1 class="hero__title" id="hero-title"><span class="sample">設計から公開まで、</span><br><span class="sample">伝わるホームページを</span><br><span class="sample">つくります。</span></h1>
+          <p class="hero__lead"><span class="sample">構成づくり、デザイン、コーディング、公開後の更新まで。エンジニアが直接うかがい、実際に動く画面を見ながら一緒に形にしていきます。</span></p>
+          <div class="hero__actions">
+            <a href="#contact" class="btn btn--lg">制作の相談をする</a>
+            <a href="#works" class="text-link">制作実績を見る<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
           </div>
         </div>
+
+        <figure class="hero__figure">
+          <div class="browser" data-state="wire" id="mock">
+            <div class="browser__bar"><span class="browser__url mono">your-company.jp</span></div>
+            <div class="browser__body" aria-hidden="true">
+              <div class="w-nav"><i class="w-logo"></i><span class="w-links"><i></i><i></i><i></i><i></i></span></div>
+              <div class="w-hero">
+                <div class="w-text"><i class="w-h"></i><i class="w-h"></i><i class="w-p"></i><i class="w-p"></i><i class="w-btn"></i></div>
+                <i class="w-img"></i>
+              </div>
+              <div class="w-cols"><i></i><i></i><i></i></div>
+              <div class="notes mono">
+                <span class="note note--h">h1 / 40px</span>
+                <span class="note note--img">写真 4:3</span>
+                <span class="note note--gap">3カラム / gap 24px</span>
+              </div>
+            </div>
+          </div>
+          <figcaption class="toggle">
+            <span class="toggle__group" role="group" aria-label="表示の切り替え">
+              <button type="button" data-state="wire" aria-pressed="true">ワイヤー</button>
+              <button type="button" data-state="design" aria-pressed="false">完成</button>
+            </span>
+            <span class="toggle__caption mono">構成 → デザイン</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <div class="container">
-    <div class="visual" role="img" aria-label="メインビジュアル（写真差し替え予定）">メインビジュアル（写真差し替え予定）</div>
-  </div>
+  <div class="mega" aria-hidden="true"><div class="container"><p><span>Build</span> the web.</p></div></div>
 
-  <section class="section" id="business" style="border-top:0">
+  <!-- Service -->
+  <section class="section" id="service" aria-labelledby="service-title">
     <div class="container">
       <div class="section__head">
         <div>
-          <span class="label">Our business</span>
-          <h2 class="section__title"><span class="sample">技術と人で、事業の速度を上げる。</span></h2>
+          <p class="path mono">kanana-tech.jp<b>/service</b></p>
+          <h2 class="section__title" id="service-title"><span class="sample">ホームページから業務システムまで、</span><br><span class="sample">つくる力で事業を支える。</span></h2>
         </div>
-        <p class="section__desc"><span class="sample">つくる力と、つくる人を支える力。ふたつの事業で、お客様と技術者の両方に価値を届けます。</span></p>
+        <p><span class="sample">見た目を整えるだけでなく、問い合わせや採用など「サイトで何を起こしたいか」から設計します。</span></p>
       </div>
+
+      <article class="web">
+        <div class="web__head">
+          <span class="web__no mono">Service 01 — 主力</span>
+          <h3 class="web__name">ホームページ制作</h3>
+          <p class="web__catch"><span class="sample">会社の顔になるサイトを、更新しやすい形で。</span></p>
+          <p class="web__text"><span class="sample">コーポレートサイトのリニューアルや新規制作を承ります。文言を画像にせず、公開後もお客様自身で更新しやすい作りを基本にしています。</span></p>
+        </div>
+        <dl class="web__spec">
+          <div class="spec"><dt class="mono">01 構成</dt><dd><span class="sample">ページ構成・導線の設計</span><small><span class="sample">誰に読まれ、何をしてほしいサイトかを整理します。</span></small></dd></div>
+          <div class="spec"><dt class="mono">02 デザイン</dt><dd><span class="sample">会社らしさを出す画面デザイン</span><small><span class="sample">テンプレートに頼らず、業種と読み手に合わせて組みます。</span></small></dd></div>
+          <div class="spec"><dt class="mono">03 実装</dt><dd><span class="sample">コーディング・スマホ対応</span><small><span class="sample">表示の速さと、読みやすさを確認しながら仕上げます。</span></small></dd></div>
+          <div class="spec"><dt class="mono">04 公開後</dt><dd><span class="sample">公開・更新のサポート</span><small><span class="sample">お問い合わせフォームや更新作業も相談できます。</span></small></dd></div>
+        </dl>
+      </article>
 
       <div class="biz">
-        <article class="biz__row">
+        <article class="biz__item">
+          <span class="biz__no mono">Service 02</span>
           <h3 class="biz__name">受託開発<small>System Development</small></h3>
-          <div>
-            <p class="biz__catch"><span class="sample">現場で本当に使われる業務システムを、速く、無駄なく。</span></p>
-            <p class="biz__text"><span class="sample">代表が直接課題をうかがい、短期間で実際に動くデモ画面をつくってから開発を進めます。React / TypeScript を中心に、AIツールを活用して開発します。</span></p>
-            <ul class="biz__points">
-              <li>React / TypeScript</li>
-              <li>プロトタイプ先行</li>
-              <li>補助金活用のご相談</li>
-            </ul>
-          </div>
-          <a href="#contact" class="arrow-link biz__link">相談する<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+          <p class="biz__text"><span class="sample">代表が直接課題をうかがい、短期間で実際に動くデモ画面をつくってから開発を進めます。React / TypeScript が中心です。</span></p>
+          <a href="#contact" class="text-link">相談する<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
         </article>
-
-        <article class="biz__row">
+        <article class="biz__item">
+          <span class="biz__no mono">Service 03</span>
           <h3 class="biz__name">SES事業<small>Engineering Service</small></h3>
-          <div>
-            <p class="biz__catch"><span class="sample">会社に縛るのではなく、自立を支える。</span></p>
-            <p class="biz__text"><span class="sample">案件はエンジニア本人が選ぶ方式。代表が営業からキャリア相談まで直接伴走し、自走できるエンジニアがプロジェクトに参画します。</span></p>
-          </div>
-          <a href="#contact" class="arrow-link biz__link">相談する<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+          <p class="biz__text"><span class="sample">案件はエンジニア本人が選ぶ方式。代表が営業からキャリア相談まで直接伴走します。</span></p>
+          <a href="#contact" class="text-link">相談する<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
         </article>
-
-        <article class="biz__row">
-          <h3 class="biz__name">Kanana Works<small>フリーランスプラットフォーム</small></h3>
-          <div>
-            <p class="biz__catch"><span class="sample">エンジニアとフリーランスのための登録制度。</span></p>
-            <p class="biz__text"><span class="sample">ヒアリングから現場参画まで、一人ひとりに合わせて対応します。単価・フルリモート・勤務地など、さまざまなご希望をうかがいます。</span></p>
-          </div>
-          <a href="https://freelance-platform.pages.dev/" class="arrow-link biz__link" target="_blank" rel="noopener">サービスサイト<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3H3v10h10v-3M9 2h5v5M14 2 7 9" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        <article class="biz__item">
+          <span class="biz__no mono">Service 04</span>
+          <h3 class="biz__name">Kanana Works<small>Freelance Platform</small></h3>
+          <p class="biz__text"><span class="sample">エンジニア・フリーランス向けの登録制度。ヒアリングから現場参画まで一人ひとりに対応します。</span></p>
+          <a href="https://freelance-platform.pages.dev/" class="text-link" target="_blank" rel="noopener">サービスサイト<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2H2v10h10V9M8 1h5v5M13 1 6 8" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section" id="company">
+  <!-- Flow -->
+  <section class="section" id="flow" aria-labelledby="flow-title">
     <div class="container">
       <div class="section__head">
         <div>
-          <span class="label">Company</span>
-          <h2 class="section__title">Kananaについて</h2>
+          <p class="path mono">kanana-tech.jp<b>/flow</b></p>
+          <h2 class="section__title" id="flow-title">ご依頼の流れ</h2>
+        </div>
+        <p><span class="sample">早い段階で実際に動く画面をお見せし、見ながら決めていきます。</span></p>
+      </div>
+      <ol class="flow">
+        <li><span class="flow__no mono">STEP 01</span><h3 class="flow__name">ヒアリング</h3><p class="flow__text"><span class="sample">目的、読み手、今のサイトの課題をうかがいます。</span></p></li>
+        <li><span class="flow__no mono">STEP 02</span><h3 class="flow__name">構成・デモ</h3><p class="flow__text"><span class="sample">ページ構成を決め、動くデモ画面をつくります。</span></p></li>
+        <li><span class="flow__no mono">STEP 03</span><h3 class="flow__name">デザイン</h3><p class="flow__text"><span class="sample">色・書体・写真の方針を決め、画面を仕上げます。</span></p></li>
+        <li><span class="flow__no mono">STEP 04</span><h3 class="flow__name">実装・確認</h3><p class="flow__text"><span class="sample">スマホ表示やフォームの動きを一緒に確認します。</span></p></li>
+        <li><span class="flow__no mono">STEP 05</span><h3 class="flow__name">公開・運用</h3><p class="flow__text"><span class="sample">公開後の更新や改善もご相談いただけます。</span></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Works -->
+  <section class="section" id="works" aria-labelledby="works-title">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <p class="path mono">kanana-tech.jp<b>/works</b></p>
+          <h2 class="section__title" id="works-title">制作実績</h2>
+        </div>
+      </div>
+      <article class="work">
+        <div class="work__shot browser">
+          <div class="browser__bar"><span class="browser__url mono">株式会社パイオニア コーポレートサイト</span></div>
+          <div class="browser__body"><img src="assets/img/work-pioneer.jpg" alt="株式会社パイオニアのコーポレートサイトのトップ画面。ペンの色を選べるサンプルが表示されている" width="1280" height="800" loading="lazy"></div>
+        </div>
+        <div class="work__meta">
+          <span class="work__status mono">制作中</span>
+          <p class="work__client">株式会社パイオニア（筆記具メーカー）</p>
+          <h3 class="work__title"><span class="sample">コーポレートサイトのリニューアル</span></h3>
+          <dl class="work__table">
+            <div><dt>業種</dt><dd>筆記具の企画・受注生産</dd></div>
+            <div><dt>担当</dt><dd><span class="sample">構成・デザイン・実装</span></dd></div>
+            <div><dt>特徴</dt><dd><span class="sample">ペンの色を選んで試せるサンプルをトップに配置</span></dd></div>
+          </dl>
+          <p class="work__note">※掲載はクライアントの了承後に確定します。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section class="section" id="company" aria-labelledby="company-title">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <p class="path mono">kanana-tech.jp<b>/company</b></p>
+          <h2 class="section__title" id="company-title">会社概要</h2>
         </div>
       </div>
       <div class="company">
-        <div id="message">
-          <div class="portrait" role="img" aria-label="代表写真（差し替え予定）">代表写真</div>
-          <p class="message__label">代表メッセージ</p>
-          <p class="message__title"><span class="sample">エンジニアが自分の力で立てる場所を、つくりたい。</span></p>
-          <p class="message__text"><span class="sample">AIの登場で、一人の技術者が生み出せる価値は大きく変わりました。その力を「工数」ではなく、お客様の事業の成果につなげること。それがKananaの仕事です。</span></p>
-          <p class="message__name">代表取締役 榊原 大喜</p>
+        <div class="message">
+          <div class="portrait mono" role="img" aria-label="代表写真（差し替え予定）">photo</div>
+          <div>
+            <p class="message__label mono">代表メッセージ</p>
+            <p class="message__title"><span class="sample">つくる人の顔が見える会社でありたい。</span></p>
+            <p class="message__text"><span class="sample">ご相談には私が直接うかがい、最初の画面づくりから関わります。小さな会社だからこそ、早く、近くで動けることを強みにしています。</span></p>
+            <p class="message__name">代表取締役 榊原 大喜</p>
+          </div>
         </div>
         <dl class="table">
           <div class="table__row"><dt>会社名</dt><dd>株式会社Kanana</dd></div>
@@ -364,50 +572,42 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <div class="table__row"><dt>設立</dt><dd>2026年6月1日</dd></div>
           <div class="table__row"><dt>本社</dt><dd>〒250-0045 神奈川県小田原市城山2-2-60</dd></div>
           <div class="table__row"><dt>事業所</dt><dd>〒105-0013 東京都港区浜松町2丁目2番15号 浜松町ダイヤビル2F</dd></div>
-          <div class="table__row"><dt>事業内容</dt><dd>受託開発 ／ SES事業 ／ フリーランスプラットフォーム「Kanana Works」の運営</dd></div>
+          <div class="table__row"><dt>事業内容</dt><dd>ホームページ制作 ／ 受託開発 ／ SES事業 ／ フリーランスプラットフォーム「Kanana Works」の運営</dd></div>
         </dl>
       </div>
     </div>
   </section>
 
-  <section class="section" id="news">
+  <!-- News / Careers -->
+  <section class="section" aria-label="お知らせと採用情報">
     <div class="container">
-      <div class="section__head">
-        <div>
-          <span class="label">News</span>
-          <h2 class="section__title">お知らせ</h2>
+      <div class="duo">
+        <div id="news">
+          <p class="path mono">kanana-tech.jp<b>/news</b></p>
+          <h2>お知らせ</h2>
+          <p class="news__empty">現在お知らせはありません。</p>
         </div>
-      </div>
-      <div class="news">
-        <p class="news__empty">現在お知らせはありません。</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="careers">
-    <div class="container">
-      <div class="careers">
-        <div>
-          <span class="label">Careers</span>
-          <h2 class="section__title"><span class="sample">自立したエンジニアとして、</span><br><span class="sample">一緒に挑戦する仲間を。</span></h2>
-        </div>
-        <div>
-          <p class="careers__text"><span class="sample">Kananaは、一人ひとりの自立を前提にしたチームです。会社に縛られない強さを持ち、新しい働き方を一緒につくれる方を探しています。</span></p>
-          <p class="careers__status"><span>採用情報</span><span>Coming soon</span></p>
+        <div id="careers">
+          <p class="path mono">kanana-tech.jp<b>/careers</b></p>
+          <h2>採用情報</h2>
+          <p class="careers__text"><span class="sample">自立したエンジニアとして、一緒に挑戦できる仲間を探しています。</span></p>
+          <p class="careers__status"><span>募集職種</span><span class="mono">Coming soon</span></p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="contact">
-        <div>
-          <span class="label">Contact</span>
-          <h2 class="section__title">開発のご相談、パートナーシップについて。</h2>
-          <p class="contact__text"><span class="sample">システム開発のご相談から、エンジニアの参画、協業のご提案まで。現在の状況と、実現したいことをお聞かせください。</span>ご返信には3営業日ほどいただいております。</p>
-        </div>
-        <a href="https://kanana-tech.jp/contact" class="btn btn--lg">お問い合わせ<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+  <!-- Contact -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="container contact__inner">
+      <div class="contact__copy">
+        <p class="path mono">kanana-tech.jp<b>/contact</b></p>
+        <h2 class="contact__title" id="contact-title"><span class="sample">サイトのこと、</span><br><span class="sample">まずはご相談ください。</span></h2>
+        <p class="contact__text"><span class="sample">リニューアルの相談、システム開発、エンジニアの参画まで。今の状況と、やりたいことをお聞かせください。</span></p>
+      </div>
+      <div class="contact__action">
+        <a href="https://kanana-tech.jp/contact" class="btn btn--lg">お問い合わせフォーム<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 7h11M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        <p class="contact__reply mono">ご返信には3営業日ほどいただいております。</p>
       </div>
     </div>
   </section>
@@ -417,42 +617,50 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="#top" class="logo">Kanana<span>, inc.</span></a>
-        <div class="footer__info">
-          <div><span>会社名</span><span>株式会社Kanana</span></div>
-          <div><span>設立</span><span>2026年6月1日</span></div>
-          <div><span>本社</span><span>神奈川県小田原市城山2-2-60</span></div>
-        </div>
+        <a href="#top" class="logo">Kanana<i>inc.</i></a>
+        <p class="footer__info">株式会社Kanana<br>〒250-0045 神奈川県小田原市城山2-2-60</p>
       </div>
       <div class="footer__col">
-        <h3>Business</h3>
-        <ul><li><a href="#business">受託開発</a></li><li><a href="#business">SES事業</a></li><li><a href="https://freelance-platform.pages.dev/" target="_blank" rel="noopener">Kanana Works</a></li></ul>
+        <h3 class="mono">/service</h3>
+        <ul><li><a href="#service">ホームページ制作</a></li><li><a href="#service">受託開発</a></li><li><a href="#service">SES事業</a></li><li><a href="https://freelance-platform.pages.dev/" target="_blank" rel="noopener">Kanana Works</a></li></ul>
       </div>
       <div class="footer__col">
-        <h3>Company</h3>
-        <ul><li><a href="#company">会社概要</a></li><li><a href="#news">お知らせ</a></li><li><a href="#careers">採用情報</a></li></ul>
+        <h3 class="mono">/company</h3>
+        <ul><li><a href="#company">会社概要</a></li><li><a href="#works">制作実績</a></li><li><a href="#news">お知らせ</a></li><li><a href="#careers">採用情報</a></li></ul>
       </div>
       <div class="footer__col">
-        <h3>Contact</h3>
+        <h3 class="mono">/contact</h3>
         <ul><li><a href="https://kanana-tech.jp/contact">お問い合わせ</a></li><li><a href="https://freezing-silk-eb3.notion.site/ff60e947f4ef402b8dda93fa34104026" target="_blank" rel="noopener">プライバシーポリシー</a></li></ul>
       </div>
     </div>
-    <div class="footer__bottom">
-      <span class="en">© 2026 Kanana, inc.</span>
+    <div class="footer__bottom mono">
+      <span>© 2026 Kanana, inc.</span>
+      <span>1160px / 12 columns</span>
     </div>
   </div>
 </footer>
 
 <script>
-  const btn = document.querySelector('.menu-btn');
+  // メニュー（スマホ）
+  const menuBtn = document.querySelector('.menu-btn');
   const nav = document.getElementById('nav');
-  btn.addEventListener('click', () => {
+  menuBtn.addEventListener('click', () => {
     const open = nav.classList.toggle('is-open');
-    btn.setAttribute('aria-expanded', open);
-    btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
   });
   nav.addEventListener('click', e => {
-    if (e.target.closest('a')) { nav.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
+    if (e.target.closest('a')) { nav.classList.remove('is-open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  });
+
+  // ヒーロー：ワイヤー ⇄ 完成
+  const mock = document.getElementById('mock');
+  const toggles = document.querySelectorAll('.toggle button');
+  toggles.forEach(b => {
+    b.addEventListener('click', () => {
+      mock.dataset.state = b.dataset.state;
+      toggles.forEach(x => x.setAttribute('aria-pressed', x === b));
+    });
   });
 </script>
 </body>
