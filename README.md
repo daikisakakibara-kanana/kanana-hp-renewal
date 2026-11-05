@@ -21,7 +21,7 @@
 色は紺（文字）と青緑（アクセント1色）。書体は M PLUS 2（和文）と Outfit（英数字）。
 
 ## 画像
-- `assets/img/hero-sea.jpg`（と `-1200`）: トップの写真。いただいた元画像（2000×1333、Unsplash の `photo-1518837695005-2083093ee35b` と同じ写真）を 21:9 に切り抜いたもの
+- `assets/img/hero-sea-pc.jpg`（と `-pc-1200`）: トップの写真（PC、21:9に切り抜き）。`hero-sea-sp.jpg`: スマホ用（元画像の 3:2 のまま）。元画像は Unsplash の `photo-1518837695005-2083093ee35b` と同じ写真
 - `assets/img/representative.jpg`: 代表写真
 - `assets/img/work-pioneer.jpg`: 実績（株式会社パイオニア）のスクリーンショット
 
