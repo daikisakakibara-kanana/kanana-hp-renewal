@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>株式会社Kanana</title>
+<meta name="description" content="株式会社Kananaは、受託開発・SES事業・フリーランスプラットフォーム「Kanana Works」を運営するIT企業です。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   Foundations（デザインの基準値）
+   - 色・文字サイズ・余白は、ここにある値以外を使わない。
+   - 増やすときは先にここを直す。
+   ========================================================================== */
+:root {
+  --header-h: 84px;
+
+  /* Color：アクセント色を持たず、濃淡と罫線だけで組む */
+  --ground: #f9f9f7;
+  --ground-2: #eff0ed;
+  --surface: #ffffff;
+  --ink: #22262b;
+  --ink-2: rgba(34, 38, 43, 0.74);
+  --ink-3: rgba(34, 38, 43, 0.6);
+  --line: rgba(34, 38, 43, 0.14);
+  --line-strong: rgba(34, 38, 43, 0.3);
+  --on-ink: #ffffff;
+  --sample: #fff4c2; /* サンプル文言のマーカー。本番では使わない */
+  --sample-ink: #22262b;
+
+  /* Type */
+  --font-jp: 'Noto Sans JP', 游ゴシック体, YuGothic, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  --font-en: Archivo, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Type scale：この段以外の font-size を書かない */
+  --fs-display: clamp(34px, 5vw, 76px);
+  --fs-section: clamp(24px, 2.8vw, 36px);
+  --fs-heading: clamp(18px, 1.6vw, 20px);
+  --fs-lead: clamp(17px, 1.5vw, 20px);
+  --fs-body: 15px;
+  --fs-small: 13px;
+  --fs-label: 12px;
+
+  /* Space scale */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 40px;
+  --sp-5: 64px;
+  --sp-6: clamp(80px, 10vw, 140px);
+
+  --container: 1112px;
+  --gutter: clamp(20px, 5vw, 40px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #17191c; --ground-2: #1f2226; --surface: #23262a;
+    --ink: #ecebe6; --ink-2: rgba(236, 235, 230, 0.76); --ink-3: rgba(236, 235, 230, 0.58);
+    --line: rgba(236, 235, 230, 0.14); --line-strong: rgba(236, 235, 230, 0.3);
+    --on-ink: #17191c; --sample: rgba(255, 214, 90, 0.28); --sample-ink: #ecebe6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #17191c; --ground-2: #1f2226; --surface: #23262a;
+  --ink: #ecebe6; --ink-2: rgba(236, 235, 230, 0.76); --ink-3: rgba(236, 235, 230, 0.58);
+  --line: rgba(236, 235, 230, 0.14); --line-strong: rgba(236, 235, 230, 0.3);
+  --on-ink: #17191c; --sample: rgba(255, 214, 90, 0.28); --sample-ink: #ecebe6;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: var(--header-h); -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-jp);
+  font-size: var(--fs-body);
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, dl, dd, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.container {
+  width: 100%; max-width: calc(var(--container) + var(--gutter) * 2); margin: 0 auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.en { font-family: var(--font-en); letter-spacing: 0.02em; }
+
+/* サンプル文言の目印 ----------------------------------------------------- */
+.sample { background: linear-gradient(transparent 62%, var(--sample) 62%); }
+.sample-note {
+  background: var(--ink); color: var(--on-ink); font-size: var(--fs-small);
+  text-align: center; line-height: 1.6; padding-block: var(--sp-1);
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.sample-note mark { background: #fff4c2; color: #22262b; padding: 0 4px; }
+
+/* Header ----------------------------------------------------------------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--ground); }
+.header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ground); }
+.header__inner {
+  height: var(--header-h); display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.logo { font-family: var(--font-en); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
+.logo span { font-weight: 400; }
+.nav { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-small); font-weight: 700; }
+.nav a:not(.btn):hover { color: var(--ink-3); }
+.menu-btn { display: none; }
+
+/* Buttons / links -------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: var(--ink); color: var(--on-ink); font-weight: 700; font-size: var(--fs-small);
+  padding: 12px 24px; transition: opacity .2s;
+}
+.btn:hover { opacity: .82; }
+.btn--lg { padding: 18px 32px; }
+.arrow-link {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  font-size: var(--fs-small); font-weight: 700;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line-strong);
+}
+.arrow-link svg, .btn svg { width: 16px; height: 16px; flex: none; transition: transform .2s; }
+.arrow-link:hover svg, .btn:hover svg { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) { .arrow-link svg, .btn svg, .btn { transition: none; } }
+
+/* Hero ------------------------------------------------------------------- */
+.hero { padding: var(--sp-6) 0 var(--sp-5); }
+.hero__grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--sp-5); align-items: stretch; }
+.hero__kicker, .hero__foot { font-size: var(--fs-small); color: var(--ink-2); }
+.hero__title { font-size: var(--fs-display); font-weight: 700; line-height: 1.38; letter-spacing: 0.02em; margin: var(--sp-4) 0; }
+.hero__side { border-left: 1px solid var(--line-strong); padding-left: var(--sp-4); display: flex; flex-direction: column; justify-content: center; gap: var(--sp-3); }
+.hero__lead { font-size: var(--fs-lead); font-weight: 700; line-height: 1.9; }
+.hero__text { color: var(--ink-2); }
+.hero__links { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-2); }
+
+.visual {
+  aspect-ratio: 1112 / 400; background: var(--ground-2);
+  display: grid; place-items: center; color: var(--ink-3); font-size: var(--fs-small);
+  border: 1px dashed var(--line-strong);
+}
+
+/* Section ---------------------------------------------------------------- */
+.section { padding: var(--sp-6) 0; border-top: 1px solid var(--line); }
+.section:first-of-type { border-top: 0; }
+.section__head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--sp-4); margin-bottom: var(--sp-5); }
+.label { display: block; font-family: var(--font-en); font-size: var(--fs-label); font-weight: 600; color: var(--ink-2); letter-spacing: 0.06em; margin-bottom: var(--sp-2); }
+.section__title { font-size: var(--fs-section); font-weight: 700; line-height: 1.5; }
+.section__desc { max-width: 420px; color: var(--ink-2); }
+
+/* Business --------------------------------------------------------------- */
+.biz { border-top: 1px solid var(--line); }
+.biz__row {
+  display: grid; grid-template-columns: 280px 1fr 140px; gap: var(--sp-4);
+  align-items: center; padding: var(--sp-5) 0; border-bottom: 1px solid var(--line);
+}
+.biz__name { font-family: var(--font-en); font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; line-height: 1.3; }
+.biz__name small { display: block; font-family: var(--font-jp); font-size: var(--fs-small); font-weight: 500; color: var(--ink-2); margin-top: var(--sp-1); letter-spacing: 0.04em; }
+.biz__catch { font-size: var(--fs-heading); font-weight: 700; line-height: 1.7; margin-bottom: var(--sp-2); }
+.biz__text { color: var(--ink-2); }
+.biz__points { display: flex; flex-wrap: wrap; gap: var(--sp-1); margin-top: var(--sp-2); }
+.biz__points li { font-size: var(--fs-label); border: 1px solid var(--line-strong); padding: 2px 10px; color: var(--ink-2); }
+.biz__link { justify-self: end; }
+
+/* Company ---------------------------------------------------------------- */
+.company { display: grid; grid-template-columns: 1fr 1.25fr; gap: var(--sp-5); }
+.portrait {
+  width: 200px; aspect-ratio: 1; background: var(--ground-2); border: 1px dashed var(--line-strong);
+  display: grid; place-items: center; color: var(--ink-3); font-size: var(--fs-label); margin-bottom: var(--sp-3);
+}
+.message__label { font-size: var(--fs-label); color: var(--ink-2); margin-bottom: var(--sp-1); }
+.message__title { font-size: var(--fs-heading); font-weight: 700; line-height: 1.8; margin-bottom: var(--sp-2); }
+.message__text { color: var(--ink-2); margin-bottom: var(--sp-3); }
+.message__name { font-size: var(--fs-small); font-weight: 700; }
+.table { border-top: 1px solid var(--line); }
+.table__row { display: grid; grid-template-columns: 120px 1fr; gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
+.table dt { font-weight: 700; font-size: var(--fs-small); }
+.table dd { color: var(--ink-2); font-size: var(--fs-small); }
+.table dd p + p { margin-top: var(--sp-1); }
+
+/* News ------------------------------------------------------------------- */
+.news { border-top: 1px solid var(--line); }
+.news__item { display: grid; grid-template-columns: 110px 120px 1fr; gap: var(--sp-3); align-items: center; padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
+.news__date { font-family: var(--font-en); font-size: var(--fs-small); color: var(--ink-2); }
+.news__tag { font-size: var(--fs-label); border: 1px solid var(--line-strong); padding: 2px 10px; justify-self: start; color: var(--ink-2); }
+.news__title { font-weight: 500; }
+.news__empty { padding: var(--sp-4) 0; color: var(--ink-3); border-bottom: 1px solid var(--line); }
+
+/* Careers ---------------------------------------------------------------- */
+.careers { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); align-items: end; }
+.careers__text { color: var(--ink-2); }
+.careers__status { display: flex; align-items: center; justify-content: space-between; padding: var(--sp-3) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: var(--fs-small); font-weight: 700; margin-top: var(--sp-3); }
+.careers__status span:last-child { font-family: var(--font-en); color: var(--ink-3); }
+
+/* Contact ---------------------------------------------------------------- */
+.contact { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-4); align-items: end; }
+.contact__text { color: var(--ink-2); margin-top: var(--sp-2); max-width: 520px; }
+
+/* Footer ----------------------------------------------------------------- */
+.footer { background: var(--ground-2); padding: var(--sp-5) 0 var(--sp-3); margin-top: var(--sp-5); }
+.footer__grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--line); }
+.footer__info { margin-top: var(--sp-3); font-size: var(--fs-label); color: var(--ink-2); line-height: 1.8; }
+.footer__info div { display: grid; grid-template-columns: 56px 1fr; gap: var(--sp-2); }
+.footer__col h3 { font-family: var(--font-en); font-size: var(--fs-label); font-weight: 600; margin-bottom: var(--sp-2); }
+.footer__col li { font-size: var(--fs-small); color: var(--ink-2); line-height: 2.2; }
+.footer__col a:hover { color: var(--ink); }
+.footer__bottom { display: flex; justify-content: space-between; margin-top: var(--sp-5); padding-top: var(--sp-3); border-top: 1px solid var(--line); font-size: var(--fs-label); color: var(--ink-3); }
+
+/* Mobile ----------------------------------------------------------------- */
+@media (max-width: 900px) {
+  :root { --header-h: 64px; }
+  .menu-btn {
+    display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+    background: none; border: 1px solid var(--line-strong); color: var(--ink); cursor: pointer; font: inherit;
+  }
+  .nav {
+    display: none; position: absolute; top: var(--header-h); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0; background: var(--ground);
+    padding: var(--sp-2) var(--gutter) var(--sp-3); border-bottom: 1px solid var(--line);
+  }
+  .nav.is-open { display: flex; }
+  .nav a:not(.btn) { padding: var(--sp-2) 0; border-bottom: 1px solid var(--line); }
+  .nav .btn { margin-top: var(--sp-3); justify-content: center; }
+  .hero__grid, .company, .careers, .contact { grid-template-columns: 1fr; }
+  .hero__side { border-left: 0; border-top: 1px solid var(--line-strong); padding: var(--sp-4) 0 0; }
+  .visual { aspect-ratio: 4 / 3; }
+  .section__head { flex-direction: column; align-items: flex-start; }
+  .biz__row { grid-template-columns: 1fr; gap: var(--sp-2); padding: var(--sp-4) 0; }
+  .biz__link { justify-self: start; margin-top: var(--sp-1); }
+  .news__item { grid-template-columns: auto auto; }
+  .news__title { grid-column: 1 / -1; }
+  .table__row { grid-template-columns: 96px 1fr; }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+  .footer__bottom { flex-direction: column; gap: var(--sp-1); }
+}
+</style>
+</head>
+<body>
+
+<p class="sample-note"><mark>黄色マーカー</mark>の文言はサンプルです。会社情報・事業名・連絡先は現行サイト（kanana-tech.jp）の内容です。</p>
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="#top" class="logo" aria-label="株式会社Kanana トップ">Kanana<span>, inc.</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="メニューを開く">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 6h16M2 14h16" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="メイン">
+      <a href="#company">会社概要</a>
+      <a href="#business">事業</a>
+      <a href="#news">お知らせ</a>
+      <a href="#careers">採用情報</a>
+      <a href="#contact" class="btn">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div>
+          <p class="hero__kicker">株式会社Kanana</p>
+          <h1 class="hero__title"><span class="sample">自走する技術者が、</span><br><span class="sample">事業を前に進める。</span></h1>
+          <p class="hero__foot en">Kanana, inc.</p>
+        </div>
+        <div class="hero__side">
+          <p class="hero__lead"><span class="sample">Kananaは、AIを使いこなすエンジニアの力で、現場で使われるシステムをつくる会社です。</span></p>
+          <p class="hero__text"><span class="sample">受託開発からエンジニアの参画支援まで。技術者が自立して力を発揮できる場をつくっています。</span></p>
+          <div class="hero__links">
+            <a href="#business" class="arrow-link">事業を知る<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+            <a href="#company" class="arrow-link">会社を知る<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="visual" role="img" aria-label="メインビジュアル（写真差し替え予定）">メインビジュアル（写真差し替え予定）</div>
+  </div>
+
+  <section class="section" id="business" style="border-top:0">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="label">Our business</span>
+          <h2 class="section__title"><span class="sample">技術と人で、事業の速度を上げる。</span></h2>
+        </div>
+        <p class="section__desc"><span class="sample">つくる力と、つくる人を支える力。ふたつの事業で、お客様と技術者の両方に価値を届けます。</span></p>
+      </div>
+
+      <div class="biz">
+        <article class="biz__row">
+          <h3 class="biz__name">受託開発<small>System Development</small></h3>
+          <div>
+            <p class="biz__catch"><span class="sample">現場で本当に使われる業務システムを、速く、無駄なく。</span></p>
+            <p class="biz__text"><span class="sample">代表が直接課題をうかがい、短期間で実際に動くデモ画面をつくってから開発を進めます。React / TypeScript を中心に、AIツールを活用して開発します。</span></p>
+            <ul class="biz__points">
+              <li>React / TypeScript</li>
+              <li>プロトタイプ先行</li>
+              <li>補助金活用のご相談</li>
+            </ul>
+          </div>
+          <a href="#contact" class="arrow-link biz__link">相談する<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        </article>
+
+        <article class="biz__row">
+          <h3 class="biz__name">SES事業<small>Engineering Service</small></h3>
+          <div>
+            <p class="biz__catch"><span class="sample">会社に縛るのではなく、自立を支える。</span></p>
+            <p class="biz__text"><span class="sample">案件はエンジニア本人が選ぶ方式。代表が営業からキャリア相談まで直接伴走し、自走できるエンジニアがプロジェクトに参画します。</span></p>
+          </div>
+          <a href="#contact" class="arrow-link biz__link">相談する<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        </article>
+
+        <article class="biz__row">
+          <h3 class="biz__name">Kanana Works<small>フリーランスプラットフォーム</small></h3>
+          <div>
+            <p class="biz__catch"><span class="sample">エンジニアとフリーランスのための登録制度。</span></p>
+            <p class="biz__text"><span class="sample">ヒアリングから現場参画まで、一人ひとりに合わせて対応します。単価・フルリモート・勤務地など、さまざまなご希望をうかがいます。</span></p>
+          </div>
+          <a href="https://freelance-platform.pages.dev/" class="arrow-link biz__link" target="_blank" rel="noopener">サービスサイト<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3H3v10h10v-3M9 2h5v5M14 2 7 9" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="company">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="label">Company</span>
+          <h2 class="section__title">Kananaについて</h2>
+        </div>
+      </div>
+      <div class="company">
+        <div id="message">
+          <div class="portrait" role="img" aria-label="代表写真（差し替え予定）">代表写真</div>
+          <p class="message__label">代表メッセージ</p>
+          <p class="message__title"><span class="sample">エンジニアが自分の力で立てる場所を、つくりたい。</span></p>
+          <p class="message__text"><span class="sample">AIの登場で、一人の技術者が生み出せる価値は大きく変わりました。その力を「工数」ではなく、お客様の事業の成果につなげること。それがKananaの仕事です。</span></p>
+          <p class="message__name">代表取締役 榊原 大喜</p>
+        </div>
+        <dl class="table">
+          <div class="table__row"><dt>会社名</dt><dd>株式会社Kanana</dd></div>
+          <div class="table__row"><dt>代表</dt><dd>代表取締役 榊原 大喜</dd></div>
+          <div class="table__row"><dt>設立</dt><dd>2026年6月1日</dd></div>
+          <div class="table__row"><dt>本社</dt><dd>〒250-0045 神奈川県小田原市城山2-2-60</dd></div>
+          <div class="table__row"><dt>事業所</dt><dd>〒105-0013 東京都港区浜松町2丁目2番15号 浜松町ダイヤビル2F</dd></div>
+          <div class="table__row"><dt>事業内容</dt><dd>受託開発 ／ SES事業 ／ フリーランスプラットフォーム「Kanana Works」の運営</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="news">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="label">News</span>
+          <h2 class="section__title">お知らせ</h2>
+        </div>
+      </div>
+      <div class="news">
+        <p class="news__empty">現在お知らせはありません。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="careers">
+    <div class="container">
+      <div class="careers">
+        <div>
+          <span class="label">Careers</span>
+          <h2 class="section__title"><span class="sample">自立したエンジニアとして、</span><br><span class="sample">一緒に挑戦する仲間を。</span></h2>
+        </div>
+        <div>
+          <p class="careers__text"><span class="sample">Kananaは、一人ひとりの自立を前提にしたチームです。会社に縛られない強さを持ち、新しい働き方を一緒につくれる方を探しています。</span></p>
+          <p class="careers__status"><span>採用情報</span><span>Coming soon</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact">
+        <div>
+          <span class="label">Contact</span>
+          <h2 class="section__title">開発のご相談、パートナーシップについて。</h2>
+          <p class="contact__text"><span class="sample">システム開発のご相談から、エンジニアの参画、協業のご提案まで。現在の状況と、実現したいことをお聞かせください。</span>ご返信には3営業日ほどいただいております。</p>
+        </div>
+        <a href="https://kanana-tech.jp/contact" class="btn btn--lg">お問い合わせ<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="#top" class="logo">Kanana<span>, inc.</span></a>
+        <div class="footer__info">
+          <div><span>会社名</span><span>株式会社Kanana</span></div>
+          <div><span>設立</span><span>2026年6月1日</span></div>
+          <div><span>本社</span><span>神奈川県小田原市城山2-2-60</span></div>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h3>Business</h3>
+        <ul><li><a href="#business">受託開発</a></li><li><a href="#business">SES事業</a></li><li><a href="https://freelance-platform.pages.dev/" target="_blank" rel="noopener">Kanana Works</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h3>Company</h3>
+        <ul><li><a href="#company">会社概要</a></li><li><a href="#news">お知らせ</a></li><li><a href="#careers">採用情報</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h3>Contact</h3>
+        <ul><li><a href="https://kanana-tech.jp/contact">お問い合わせ</a></li><li><a href="https://freezing-silk-eb3.notion.site/ff60e947f4ef402b8dda93fa34104026" target="_blank" rel="noopener">プライバシーポリシー</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="en">© 2026 Kanana, inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('nav');
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  });
+  nav.addEventListener('click', e => {
+    if (e.target.closest('a')) { nav.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
+  });
+</script>
+</body>
+</html>
