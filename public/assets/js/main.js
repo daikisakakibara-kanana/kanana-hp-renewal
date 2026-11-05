@@ -11,17 +11,3 @@ if (menuBtn && nav) {
     if (e.target.closest('a')) { nav.classList.remove('is-open'); menuBtn.setAttribute('aria-expanded', 'false'); }
   });
 }
-
-// ヒーロー：ホームページ ⇄ 業務システム
-const mock = document.getElementById('mock');
-if (mock) {
-  const url = mock.querySelector('.browser__url');
-  const buttons = document.querySelectorAll('.switch button');
-  buttons.forEach(b => {
-    b.addEventListener('click', () => {
-      mock.dataset.view = b.dataset.view;
-      url.textContent = b.dataset.url;
-      buttons.forEach(x => x.setAttribute('aria-pressed', x === b));
-    });
-  });
-}
