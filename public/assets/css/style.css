@@ -482,7 +482,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 960px) { .hero__lead { grid-column: 1 / -1; } }
 
 /* ヒーロー見出し: 「毎日のめんどくさいを、／ボタン1つに。」の2行 */
-.hero__title { font-size: clamp(24px, 7.4vw, 64px); line-height: 1.35; }
+.hero__title { font-size: clamp(24px, 3vw, 34px); line-height: 1.5; letter-spacing: 0.04em; }
 
 /* 事業（入口のページ） ---------------------------------------------------- */
 .service__name small { display: block; font-size: var(--fs-small); font-weight: 500; color: var(--ink-3); }
@@ -503,17 +503,32 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .points--2 { grid-template-columns: 1fr 1fr; }
 @media (max-width: 960px) { .points--2 { grid-template-columns: 1fr; } }
 
-/* いま → こうなる ------------------------------------------------------- */
+/* たとえば、こんなこと（変わる前 → 変わった後） ------------------------- */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.changes { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--sp-5); border-top: 1px solid var(--line-strong); }
-.change { display: grid; grid-template-columns: 1fr 28px 1fr; gap: var(--sp-2); align-items: center; padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); min-width: 0; }
-.change__label { display: block; font-family: var(--font-en); font-size: var(--fs-mono); font-weight: 500; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 2px; }
-.change__before { color: var(--ink-2); font-size: var(--fs-small); }
-.change__after { font-size: var(--fs-heading); font-weight: 700; line-height: 1.5; }
-.change__after .change__label { color: var(--accent); }
-.change__arrow { width: 24px; height: 12px; color: var(--accent); }
-@media (max-width: 960px) { .changes { grid-template-columns: 1fr; } }
-@media (max-width: 480px) {
-  .change { grid-template-columns: 1fr; gap: 6px; }
-  .change__arrow { transform: rotate(90deg); margin: 2px 0 2px 4px; }
+.changes { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
+.change { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-1); padding: var(--sp-3); background: var(--surface); border: 1px solid var(--line); min-width: 0; }
+.change__before { font-size: var(--fs-small); color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line-strong); }
+.change__arrow { width: 14px; height: 22px; color: var(--accent); }
+.change__after { font-size: var(--fs-heading); font-weight: 700; line-height: 1.5; color: var(--ink); }
+@media (max-width: 960px) { .changes { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .changes { grid-template-columns: 1fr; } .change { padding: var(--sp-2) var(--sp-3); } }
+
+/* 創業メンバー募集 ------------------------------------------------------- */
+.founding { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); }
+.founding__item { padding: var(--sp-3) var(--sp-3) var(--sp-3) 0; min-width: 0; }
+.founding__item + .founding__item { border-left: 1px solid var(--line); padding-left: var(--sp-3); }
+.founding__item h3 { font-weight: 700; line-height: 1.6; margin-bottom: 4px; }
+.founding__item p { font-size: var(--fs-small); color: var(--ink-2); }
+.job__title small { font-size: var(--fs-small); font-weight: 500; color: var(--ink-3); }
+@media (max-width: 960px) {
+  .founding { grid-template-columns: 1fr 1fr; }
+  .founding__item:nth-child(3) { border-left: 0; padding-left: 0; }
+  .founding__item:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
+@media (max-width: 560px) {
+  .founding { grid-template-columns: 1fr; }
+  .founding__item, .founding__item + .founding__item { border-left: 0; padding-left: 0; }
+  .founding__item + .founding__item { border-top: 1px solid var(--line); }
+}
+.change__after { font-size: 17px; }
+.job__lead { max-width: none; }

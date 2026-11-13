@@ -11,8 +11,8 @@
 ## ページ構成（`public/`、静的HTML・ビルド不要）
 - `index.html` トップ
 - `business.html` 事業（2つの事業への入口）
-  - `development.html` 受託開発（システム開発・ホームページ制作。できること・相談の例・流れ・料金・ご契約・実績）
-  - `matching.html` エンジニアマッチング（企業の方へ: SES・フリーランス紹介／エンジニアの方へ: Kanana Works）
+  - `development.html` 受託開発（システム開発・ホームページ制作。できること・相談の例・流れ・料金・ご契約）
+  - `matching.html` エンジニア案件紹介（企業の方へ: SES・フリーランス紹介／エンジニアの方へ: Kanana Works）
 - `company.html` 会社概要
 - `news.html` お知らせ一覧、`news-*.html` 各記事
 - `recruit.html` 採用情報
@@ -30,6 +30,6 @@ Workers & Pages → Create → Pages → Connect to Git → このリポジト�
 
 ## 残タスク
 - [ ] 料金は仮の金額。確定させる（根拠と条件は `docs/pricing.md`）
-- [ ] 制作実績（株式会社パイオニア）の掲載についてクライアントの了承を得る
+- [ ] お知らせ「ホームページ制作のご報告（株式会社パイオニア様）」の掲載についてクライアントの了承を得る（日付も公開日に合わせる）
 - [ ] お問い合わせフォームの方式決定（現状は現行サイトのフォームへリンク）
 - [ ] 公開時に `<meta name="robots" content="noindex">` を外す
