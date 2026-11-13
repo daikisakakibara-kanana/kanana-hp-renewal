@@ -489,3 +489,22 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 760px) {
   .hero__title { white-space: normal; text-wrap: wrap; }
 }
+
+/* 事業（入口のページ） ---------------------------------------------------- */
+.service__name small { display: block; font-size: var(--fs-small); font-weight: 500; color: var(--ink-3); }
+.hub { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.hub__item { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4); background: var(--surface); border: 1px solid var(--line); border-top: 2px solid var(--ink); transition: border-color .2s; min-width: 0; }
+.hub__item:hover { border-top-color: var(--accent); }
+.hub__item:hover .text-link { color: var(--accent); border-color: var(--accent); }
+.hub__no { color: var(--accent); }
+.hub__name { font-size: var(--fs-section); font-weight: 700; line-height: 1.4; }
+.hub__name small { display: block; font-size: var(--fs-small); font-weight: 500; color: var(--ink-3); margin-top: 4px; }
+.hub__text { color: var(--ink-2); }
+.hub__list { display: grid; border-top: 1px solid var(--line); margin-bottom: var(--sp-2); }
+.hub__list span { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-small); }
+.hub__item .text-link { margin-top: auto; align-self: flex-start; }
+@media (prefers-reduced-motion: reduce) { .hub__item { transition: none; } }
+@media (max-width: 960px) { .hub { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .hub__item { padding: var(--sp-3) var(--sp-2); } }
+.points--2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 960px) { .points--2 { grid-template-columns: 1fr; } }
