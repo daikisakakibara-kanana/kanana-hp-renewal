@@ -10,9 +10,9 @@
 
 ## ページ構成（`public/`、静的HTML・ビルド不要）
 - `index.html` トップ
-- `business.html` 事業（2つの事業への入口）
-  - `development.html` 受託開発（システム開発・ホームページ制作。できること・相談の例・流れ・料金・ご契約）
-  - `matching.html` エンジニア案件紹介（企業の方へ: SES・フリーランス紹介／エンジニアの方へ: Kanana Works）
+- `development.html` 受託開発（システム開発・ホームページ制作。できること・相談の例・流れ・料金・ご契約）
+- `matching.html` エンジニア案件紹介（企業の方へ: SES・フリーランス紹介／エンジニアの方へ: Kanana Works）
+- `contact.html` お問い合わせフォーム（仮置き。送信先は未設定）
 - `company.html` 会社概要
 - `news.html` お知らせ一覧、`news-*.html` 各記事
 - `recruit.html` 採用情報
@@ -31,5 +31,5 @@ Workers & Pages → Create → Pages → Connect to Git → このリポジト�
 ## 残タスク
 - [ ] 料金は仮の金額。確定させる（根拠と条件は `docs/pricing.md`）
 - [ ] お知らせ「ホームページ制作のご報告（株式会社パイオニア様）」の掲載についてクライアントの了承を得る（日付も公開日に合わせる）
-- [ ] お問い合わせフォームの方式決定（現状は現行サイトのフォームへリンク）
+- [ ] お問い合わせフォームの送信先を決め、`contact.html` の `data-endpoint` に設定する（Formspree など）。未設定のあいだは「準備中」と表示して送信しない
 - [ ] 公開時に `<meta name="robots" content="noindex">` を外す

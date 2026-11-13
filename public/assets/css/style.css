@@ -532,3 +532,27 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 }
 .change__after { font-size: 17px; }
 .job__lead { max-width: none; }
+
+/* お問い合わせフォーム --------------------------------------------------- */
+.form { max-width: 720px; display: grid; gap: var(--sp-3); }
+.form__row { display: grid; gap: var(--sp-1); }
+.form__row label { font-weight: 700; font-size: var(--fs-small); display: flex; align-items: center; gap: var(--sp-1); }
+.req { font-size: var(--fs-mono); font-weight: 700; color: var(--on-ink); background: var(--accent); padding: 0 6px; line-height: 1.7; }
+.form input[type="text"], .form input[type="email"], .form input[type="tel"], .form select, .form textarea {
+  width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line-strong); border-radius: 0; padding: 12px 14px; line-height: 1.6;
+}
+.form textarea { resize: vertical; min-height: 180px; }
+.form :is(input, select, textarea):focus-visible { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.form [aria-invalid="true"] { border-color: #c2410c; }
+.form__agree label { display: flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-small); }
+.form__agree input { width: 18px; height: 18px; accent-color: var(--accent); }
+.form__agree a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.form .btn { justify-self: start; }
+.form .btn:disabled { opacity: .5; cursor: progress; }
+.form__error { color: #c2410c; font-size: var(--fs-small); font-weight: 700; }
+.form__status { font-size: var(--fs-small); padding: var(--sp-2); background: var(--surface); border: 1px solid var(--line); }
+
+/* ニュース記事のタイトルは文節で折り返す */
+.post__title { text-wrap: wrap; word-break: auto-phrase; }
+h1, h2, h3 { word-break: auto-phrase; }
