@@ -574,3 +574,31 @@ h1, h2, h3 { text-wrap: wrap; }
 @media (min-width: 761px) { .pc-only { display: inline; } }
 .nw { white-space: nowrap; }
 @media (max-width: 480px) { .contact__title { font-size: min(22px, 5.6vw); } }
+
+/* 料金（買い切り・保守・スポット・システム） ------------------------------ */
+.price-notes { margin-top: var(--sp-3); display: grid; gap: 4px; }
+.price-notes li { position: relative; padding-left: 16px; font-size: var(--fs-small); color: var(--ink-2); }
+.price-notes li::before { content: ""; position: absolute; left: 2px; top: 0.85em; width: 6px; height: 6px; border-radius: 50%; background: var(--line-strong); }
+.price-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); margin-top: var(--sp-5); }
+.subhead + .price-cards { margin-top: 0; }
+.price-card { display: flex; flex-direction: column; padding: var(--sp-4); background: var(--surface); border: 1px solid var(--line); border-top: 2px solid var(--ink); min-width: 0; }
+.price-card__label { font-size: var(--fs-small); color: var(--accent); font-weight: 700; }
+.price-card__name { font-size: var(--fs-heading); font-weight: 700; margin-top: 4px; }
+.price-card__price { display: flex; align-items: baseline; gap: 6px; margin: var(--sp-2) 0 var(--sp-2); }
+.price-card__price b { font-family: var(--font-en); font-size: clamp(30px, 3vw, 38px); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.price-card__price span { font-size: var(--fs-small); font-weight: 700; }
+.price-card__text { font-size: var(--fs-small); color: var(--ink-2); padding-bottom: var(--sp-2); border-bottom: 1px solid var(--line); }
+.price-card__note { margin-top: auto; padding-top: var(--sp-2); font-size: var(--fs-small); color: var(--ink-3); }
+@media (max-width: 960px) { .price-cards { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .price-card { padding: var(--sp-3) var(--sp-2); } }
+
+/* ご依頼にあたって */
+.policy { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line-strong); }
+.policy li { padding: var(--sp-3) var(--sp-3) var(--sp-3) 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.policy li:nth-child(even) { padding-left: var(--sp-3); padding-right: 0; border-left: 1px solid var(--line); }
+.policy h3 { font-weight: 700; margin-bottom: 4px; }
+.policy p { font-size: var(--fs-small); color: var(--ink-2); }
+@media (max-width: 760px) {
+  .policy { grid-template-columns: 1fr; }
+  .policy li, .policy li:nth-child(even) { padding: var(--sp-3) 0; border-left: 0; }
+}

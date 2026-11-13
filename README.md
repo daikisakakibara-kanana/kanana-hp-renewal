@@ -36,7 +36,7 @@
 Workers & Pages → Create → Pages → Connect to Git → このリポジトリ。Build command は空欄、Build output directory は `public`。
 
 ## 残タスク
-- [ ] 料金は仮の金額。確定させる（根拠と条件は `docs/pricing.md`）
+- [ ] 料金は Claude Docs「Kanana 料金・プラン一覧」が正本。変えたらサイトと `docs/pricing.md` も直す
 - [ ] お知らせ「ホームページ制作のご報告（株式会社パイオニア様）」の掲載についてクライアントの了承を得る（日付も公開日に合わせる）
 - [ ] お問い合わせフォームの送信先を決め、`contact.html` の `data-endpoint` に設定する（Formspree など）。未設定のあいだは「準備中」と表示して送信しない
 - [ ] 公開時に `<meta name="robots" content="noindex">` を外す
