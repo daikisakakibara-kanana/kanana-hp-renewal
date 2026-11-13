@@ -20,6 +20,13 @@
 
 ヘッダーとフッターは全ページ同じ内容を直接書いている。変更するときは全ページを直す。
 
+### 文章を編集したら
+日本語が言葉の途中で改行されないよう、文節の切れ目に `<wbr>` を入れている（CSS は `word-break: keep-all`）。
+文章を書き換えたら、リポジトリの直下で次を実行する（何度実行しても同じ結果になる）。
+
+    python3 tools/add_wbr.py public/*.html
+
+
 ## 画像
 - `assets/img/hero-sea-pc.jpg`（と `-pc-1200`）: トップの写真（PC、21:9に切り抜き）。`hero-sea-sp.jpg`: スマホ用（元画像の 3:2 のまま）。元画像は Unsplash の `photo-1518837695005-2083093ee35b` と同じ写真
 - `assets/img/representative.jpg`: 代表写真

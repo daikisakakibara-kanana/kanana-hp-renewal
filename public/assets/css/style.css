@@ -559,12 +559,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .form__status { font-size: var(--fs-small); padding: var(--sp-2); background: var(--surface); border: 1px solid var(--line); }
 
 /* ニュース記事のタイトルは文節で折り返す */
-.post__title { text-wrap: wrap; word-break: auto-phrase; }
-h1, h2, h3 { word-break: auto-phrase; }
+.post__title { text-wrap: wrap; }
 
 /* ブラッシュアップ2 ------------------------------------------------------ */
-.page-head__lead, .section__head > p, .hero__lead, .contact__title, .band__copy h2, .job__lead, .statement__body p, .about__text { word-break: auto-phrase; }
 .biz-block__name { font-size: clamp(22px, 2.2vw, 28px); }
 .service__name { display: flex; align-items: center; gap: var(--sp-2); }
 .service__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
 .service__icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 改行: 文中の <wbr>（tools/add_wbr.py で挿入）の位置だけで折り返す */
+main, .footer { word-break: keep-all; overflow-wrap: anywhere; line-break: strict; }
+h1, h2, h3 { text-wrap: wrap; }
+.pc-only { display: none; }
+@media (min-width: 761px) { .pc-only { display: inline; } }
+.nw { white-space: nowrap; }
+@media (max-width: 480px) { .contact__title { font-size: min(22px, 5.6vw); } }
