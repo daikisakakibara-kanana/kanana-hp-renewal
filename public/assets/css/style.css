@@ -481,14 +481,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .about__note p { color: var(--ink-2); }
 @media (max-width: 960px) { .hero__lead { grid-column: 1 / -1; } }
 
-/* ヒーロー見出し: PC・タブレットは1行、スマホは3行 */
-.hero__title { font-feature-settings: "palt"; text-indent: -0.5em; text-wrap: nowrap; }
-@media (min-width: 761px) {
-  .hero__title { white-space: nowrap; font-size: clamp(28px, calc((100vw - 120px) / 21), 56px); line-height: 1.3; }
-}
-@media (max-width: 760px) {
-  .hero__title { white-space: normal; text-wrap: wrap; }
-}
+/* ヒーロー見出し: 「毎日のめんどくさいを、／ボタン1つに。」の2行 */
+.hero__title { font-size: clamp(24px, 7.4vw, 64px); line-height: 1.35; }
 
 /* 事業（入口のページ） ---------------------------------------------------- */
 .service__name small { display: block; font-size: var(--fs-small); font-weight: 500; color: var(--ink-3); }
