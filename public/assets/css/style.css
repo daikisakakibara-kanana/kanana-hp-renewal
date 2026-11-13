@@ -158,9 +158,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* 会社（トップ） --------------------------------------------------------- */
 .about { align-items: center; row-gap: var(--sp-4); }
-.about__photo { grid-column: 1 / span 4; aspect-ratio: 4 / 5; overflow: hidden; background: var(--ground-2); }
+.about__photo { grid-column: 2 / span 3; width: 100%; max-width: 240px; justify-self: end; aspect-ratio: 4 / 5; overflow: hidden; background: var(--ground-2); }
 .about__photo img { width: 100%; height: 100%; object-fit: cover; }
-.about__body { grid-column: 6 / span 7; }
+.about__body { grid-column: 6 / span 6; }
 .about__text { color: var(--ink-2); margin: var(--sp-3) 0; }
 .about__name { font-weight: 700; }
 .about__name small { display: block; font-size: var(--fs-small); font-weight: 400; color: var(--ink-3); }
@@ -260,7 +260,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .about__photo, .about__body, .offer__name, .offer__body,
   .work__shot, .work__meta, .contact__copy, .contact__action { grid-column: 1 / -1; }
   .hero__lead, .section__head > p { margin-top: var(--sp-3); }
-  .about__photo { max-width: 320px; }
+  .about__photo { max-width: 160px; justify-self: start; }
   .service__name { grid-column: 1 / -1; }
   .service__text { grid-column: 1 / -1; }
   .service__link { grid-column: 1 / -1; justify-self: start; margin-top: var(--sp-1); }
@@ -429,3 +429,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 }
 @media (prefers-reduced-motion: reduce) { .positions a { transition: none; } }
 .price-intro { color: var(--ink-2); margin-bottom: var(--sp-3); }
+
+/* 文章のセクション（Kananaについて など） ------------------------------- */
+.statement { row-gap: var(--sp-3); align-items: start; }
+.statement__head { grid-column: 1 / span 4; }
+.statement__body { grid-column: 6 / span 6; display: grid; gap: var(--sp-2); }
+.statement__body p { font-size: var(--fs-lead); line-height: 2; }
+@media (max-width: 960px) {
+  .statement__head, .statement__body { grid-column: 1 / -1; }
+}
