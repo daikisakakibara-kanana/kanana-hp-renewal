@@ -303,7 +303,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .point h3 + p { margin-top: 0; }
 
 .news-list { border-top: 1px solid var(--line-strong); }
-.news-list li { display: grid; grid-template-columns: 110px 110px 1fr; gap: var(--sp-2); align-items: baseline; padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
+.news-list li { display: grid; grid-template-columns: 110px 130px 1fr; gap: var(--sp-2); align-items: baseline; padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
 .news-list time { color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .news-list .tag { justify-self: start; font-size: var(--fs-small); color: var(--accent); border: 1px solid currentColor; padding: 0 8px; line-height: 1.7; }
 .news-list p { font-weight: 500; }
