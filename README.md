@@ -10,7 +10,7 @@
 
 ## ページ構成（`public/`、静的HTML・ビルド不要）
 - `index.html` トップ
-- `development.html` 受託開発（システム開発・ホームページ制作。できること・相談の例・流れ・料金・ご契約）
+- `development.html` 受託開発（システム開発・ホームページ制作。できること・相談の例・流れ・料金・ご依頼にあたって）
 - `matching.html` エンジニア案件紹介（企業の方へ: SES・フリーランス紹介／エンジニアの方へ: Kanana Works）
 - `contact.html` お問い合わせフォーム（仮置き。送信先は未設定）
 - `company.html` 会社概要
