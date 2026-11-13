@@ -602,3 +602,23 @@ h1, h2, h3 { text-wrap: wrap; }
   .policy { grid-template-columns: 1fr; }
   .policy li, .policy li:nth-child(even) { padding: var(--sp-3) 0; border-left: 0; }
 }
+
+/* 今お使いのシステムの見直し */
+.review { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-2); }
+.review__item { display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-3); background: var(--surface); border: 1px solid var(--line); min-width: 0; }
+.review__no { color: var(--accent); }
+.review__item h4 { font-size: var(--fs-heading); font-weight: 700; }
+.review__item p { font-size: var(--fs-small); color: var(--ink-2); }
+.review__fit { margin-top: auto; padding-top: var(--sp-2); border-top: 1px solid var(--line); }
+.review__fit span { display: block; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+@media (max-width: 960px) { .review { grid-template-columns: 1fr; } }
+#price-review { margin-top: var(--sp-5); }
+h4 { margin: 0; }
+
+/* トップ: PCでは最初の画面に写真まで収める */
+@media (min-width: 761px) {
+  .hero { min-height: calc(100svh - var(--header-h)); display: flex; flex-direction: column; padding: clamp(32px, 7vh, 88px) 0 clamp(24px, 4vh, 48px); }
+  .hero > .container { flex: 1; display: flex; flex-direction: column; }
+  .hero__photo { flex: 1 1 0; aspect-ratio: auto; min-height: 240px; max-height: 640px; margin-top: clamp(24px, 5vh, 56px); }
+}
+.hero__photo img { object-position: 50% 42%; }
