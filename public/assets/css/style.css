@@ -503,15 +503,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .points--2 { grid-template-columns: 1fr 1fr; }
 @media (max-width: 960px) { .points--2 { grid-template-columns: 1fr; } }
 
-/* たとえば、こんなこと（変わる前 → 変わった後） ------------------------- */
+/* たとえば、こんなこと --------------------------------------------------- */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .changes { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
-.change { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-1); padding: var(--sp-3); background: var(--surface); border: 1px solid var(--line); min-width: 0; }
-.change__before { font-size: var(--fs-small); color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line-strong); }
-.change__arrow { width: 14px; height: 22px; color: var(--accent); }
-.change__after { font-size: var(--fs-heading); font-weight: 700; line-height: 1.5; color: var(--ink); }
+.change { display: flex; flex-direction: column; gap: 6px; padding: var(--sp-4) var(--sp-3) var(--sp-3); background: var(--surface); border: 1px solid var(--line); min-width: 0; }
+.change__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); margin-bottom: var(--sp-2); }
+.change__icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.change__before { font-size: var(--fs-small); color: var(--ink-2); }
+.change__after { font-size: 18px; font-weight: 700; line-height: 1.5; color: var(--ink); }
 @media (max-width: 960px) { .changes { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .changes { grid-template-columns: 1fr; } .change { padding: var(--sp-2) var(--sp-3); } }
+@media (max-width: 480px) {
+  .changes { grid-template-columns: 1fr; gap: var(--sp-1); }
+  .change { display: grid; grid-template-columns: 44px 1fr; column-gap: var(--sp-2); row-gap: 2px; padding: var(--sp-2); align-items: center; }
+  .change__icon { grid-row: span 2; width: 44px; height: 44px; margin: 0; }
+  .change__after { font-size: 16px; }
+}
 
 /* 創業メンバー募集 ------------------------------------------------------- */
 .founding { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); }
@@ -530,7 +536,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .founding__item, .founding__item + .founding__item { border-left: 0; padding-left: 0; }
   .founding__item + .founding__item { border-top: 1px solid var(--line); }
 }
-.change__after { font-size: 17px; }
 .job__lead { max-width: none; }
 
 /* お問い合わせフォーム --------------------------------------------------- */
@@ -556,3 +561,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* ニュース記事のタイトルは文節で折り返す */
 .post__title { text-wrap: wrap; word-break: auto-phrase; }
 h1, h2, h3 { word-break: auto-phrase; }
+
+/* ブラッシュアップ2 ------------------------------------------------------ */
+.page-head__lead, .section__head > p, .hero__lead, .contact__title, .band__copy h2, .job__lead, .statement__body p, .about__text { word-break: auto-phrase; }
+.biz-block__name { font-size: clamp(22px, 2.2vw, 28px); }
+.service__name { display: flex; align-items: center; gap: var(--sp-2); }
+.service__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
+.service__icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
