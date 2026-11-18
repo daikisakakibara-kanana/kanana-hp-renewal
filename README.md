@@ -14,6 +14,7 @@ https://kanana-tech.jp （公開先: Cloudflare Pages。ドメインの契約は
 - `_redirects` 旧サイト（STUDIO）のURLからの転送
 - `robots.txt`、`sitemap.xml`
 - `assets/css/style.css`、`assets/js/main.js`、`assets/img/`（`v2/` は各ページの見出しなどの写真）
+- `assets/js/sea.js` トップの動く海（WebGL）。`assets/js/vendor/three-r149.min.js`（three.js r149、MITライセンス）を使う。WebGLが使えない環境では `hero-sea-*.jpg` の写真がそのまま出る。色・水平線の高さ・波の大きさは `sea.js` 冒頭の `CFG` で変える
 
 ヘッダーとフッターは全ページに同じ内容を直接書いている。変更するときは全ページを直す。
 お知らせを追加するときは、記事ページ（`news-*.html`）を作り、`news.html`・`index.html`（新しい3件）・`sitemap.xml` に追記する。
