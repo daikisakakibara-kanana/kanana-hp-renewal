@@ -53,6 +53,5 @@ https://kanana-tech.jp （公開先: Cloudflare Pages。ドメインの契約は
 ## 残タスク
 - [x] Formspree のフォームを作成し、`contact.html` に設定（https://formspree.io/f/mnpddyql）
 - [ ] 公開後、本番のフォームからテスト送信して daiki.sakakibara@kanana-tech.jp に届くか確認
-- [ ] お知らせ「ホームページ制作のご報告（株式会社パイオニア様）」の掲載についてクライアントの了承を得る（日付も公開日に合わせる）
 - [ ] 料金・プラン一覧の修正案（入口のプラン・モニター価格など）の承認
 - [ ] 公開後、Google Search Console に `sitemap.xml` を登録
