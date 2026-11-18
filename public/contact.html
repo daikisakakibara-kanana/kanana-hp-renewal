@@ -49,6 +49,8 @@
   <section class="section">
     <div class="container">
       <form class="form" id="contact-form" data-endpoint="" novalidate>
+        <input type="hidden" name="_subject" value="【kanana-tech.jp】お問い合わせがありました">
+        <div class="form__hp" aria-hidden="true"><label for="f-gotcha">この<wbr>欄は<wbr>空欄のままにしてください</label><input id="f-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
         <div class="form__row">
           <label for="f-type">ご用件<span class="req">必須</span></label>
           <select id="f-type" name="type" required>

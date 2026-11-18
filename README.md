@@ -41,11 +41,17 @@ https://kanana-tech.jp （公開先: Cloudflare Pages。ドメインの契約は
 - `assets/img/ogp.jpg`: SNSで共有されたときの画像（1200×630）
 - `assets/img/work-*.jpg`: お知らせ記事のスクリーンショット
 
+## お問い合わせフォーム（Formspree）
+- 送信先: daiki.sakakibara@kanana-tech.jp（Formspree のフォーム設定で指定。HTML にメールアドレスは書かない）
+- 件名は `_subject`、迷惑投稿よけは `_gotcha`（見えない欄）。返信先はお客様が入力したメールアドレス（`email`）
+- 自動返信の文面は `docs/autoresponse.md`
+
 ## 料金
 正本は Claude Docs「Kanana 料金・プラン一覧」。変えたら `development.html`・`index.html`・`docs/pricing.md` も直す。
 
 ## 残タスク
-- [ ] お問い合わせフォームの送信先を決め、`contact.html` の `data-endpoint` に設定（Formspree など）。未設定のあいだは「準備中」と表示して送信しない
+- [ ] Formspree でフォームを作り、`contact.html` の `data-endpoint` に `https://formspree.io/f/<フォームID>` を設定 → 受信テスト（未設定のあいだは「準備中」と表示して送信しない）
+- [ ] Formspree の自動返信（Autoresponse）を設定
 - [ ] お知らせ「ホームページ制作のご報告（株式会社パイオニア様）」の掲載についてクライアントの了承を得る（日付も公開日に合わせる）
 - [ ] 料金・プラン一覧の修正案（入口のプラン・モニター価格など）の承認
 - [ ] 公開後、Google Search Console に `sitemap.xml` を登録

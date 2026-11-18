@@ -28,7 +28,8 @@ if (menuBtn && nav) {
 })();
 
 // お問い合わせフォーム（仮置き）
-// 送信先（Formspree などのURL）は form の data-endpoint に設定する。未設定のあいだは送信しない。
+// 送信先は Formspree。contact.html の form の data-endpoint に https://formspree.io/f/<フォームID> を入れる。
+// 未設定のあいだは送信しない。_gotcha は迷惑投稿よけ（人には見えない欄）。
 const form = document.getElementById('contact-form');
 if (form) {
   const err = document.getElementById('form-error');
@@ -63,7 +64,7 @@ if (form) {
       const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error(res.status);
       form.reset();
-      status.textContent = '送信しました。ご返信まで3営業日ほどお待ちください。';
+      status.textContent = 'お問い合わせありがとうございます。内容を受け付けました。ご返信まで3営業日ほどお待ちください。';
       status.hidden = false;
     } catch {
       err.textContent = '送信できませんでした。時間をおいて、もう一度お試しください。';
