@@ -704,7 +704,7 @@ h4 { margin: 0; }
 
 /* 事業: 写真つきカード ------------------------------------------------- */
 .services--cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); border-top: 0; }
-.service--card { display: flex; flex-direction: column; gap: var(--sp-2); padding: 0 0 var(--sp-3); background: var(--surface); border: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+.service--card { display: flex; flex-direction: column; align-items: stretch; gap: var(--sp-2); padding: 0 0 var(--sp-3); background: var(--surface); border: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
 .service--card > :not(.service__img) { margin-inline: var(--sp-3); }
 .service__img { display: block; aspect-ratio: 16 / 9; overflow: hidden; margin: 0 !important; }
 .service__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
