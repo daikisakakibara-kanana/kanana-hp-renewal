@@ -822,3 +822,121 @@ h4 { margin: 0; }
 .plan__tag, .monitor__label { background: var(--accent); color: var(--on-ink); }
 .monitor { background: color-mix(in srgb, var(--accent) 6%, var(--surface)); border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
 .start { border-top-color: var(--accent); }
+
+/* ==========================================================================
+   チラシに合わせた配色: 白地＋黄色、やわらかい角丸、親しみやすく
+   ========================================================================== */
+:root {
+  --ground: #fcfbf7;
+  --surface: #ffffff;
+  --tint: #fff8e3;            /* うすい黄色（セクションの背景） */
+  --sand: var(--tint);
+  --ink: #2b2f36;
+  --ink-2: rgba(43, 47, 54, 0.78);
+  --ink-3: rgba(43, 47, 54, 0.58);
+  --line: rgba(43, 47, 54, 0.12);
+  --line-strong: rgba(43, 47, 54, 0.24);
+  --yellow: #f7d154;          /* チラシの黄色。面や丸に使う */
+  --yellow-2: #efc232;        /* ホバー */
+  --yellow-soft: #fff3cc;     /* カードの面 */
+  --accent: #9a6a00;          /* 黄色系で、白地でも読める濃さ（小さな文字・リンク用） */
+  --on-ink: #ffffff;
+  --navy: #2b2f36;
+  --radius: 16px;
+  --warm: var(--accent);
+  --warm-ink: var(--ink);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #17181b; --surface: #202227; --tint: #26231a; --sand: #26231a;
+    --ink: #eeece6; --ink-2: rgba(238,236,230,.78); --ink-3: rgba(238,236,230,.58);
+    --line: rgba(238,236,230,.12); --line-strong: rgba(238,236,230,.26);
+    --yellow: #f2c94c; --yellow-2: #f7d76e; --yellow-soft: #3a3220; --accent: #f2c94c; --on-ink: #17181b; --navy: #0f1013;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #17181b; --surface: #202227; --tint: #26231a; --sand: #26231a;
+  --ink: #eeece6; --ink-2: rgba(238,236,230,.78); --ink-3: rgba(238,236,230,.58);
+  --line: rgba(238,236,230,.12); --line-strong: rgba(238,236,230,.26);
+  --yellow: #f2c94c; --yellow-2: #f7d76e; --yellow-soft: #3a3220; --accent: #f2c94c; --on-ink: #17181b; --navy: #0f1013;
+}
+body { overflow-x: hidden; }
+
+/* ロゴ */
+.logo { align-items: center; gap: 8px; }
+.logo__mark { width: 30px; height: auto; flex: none; }
+.logo i { color: var(--ink-3); }
+
+/* ボタン: 黄色の面に濃い文字（チラシの帯と同じ） */
+.btn, .nav .btn, .btn--warm { background: var(--yellow); color: #2b2f36; border-radius: 999px; }
+.btn:hover, .nav .btn:hover, .btn--warm:hover { background: var(--yellow-2); color: #2b2f36; }
+.nav .btn { padding: 10px 22px; }
+.text-link:hover { color: var(--accent); border-color: var(--yellow); }
+.nav a:not(.btn):hover, .nav a[aria-current="page"] { color: var(--accent); }
+.label { color: var(--accent); }
+
+/* ヒーロー: 右上に大きな黄色の円、写真は角丸 */
+.hero { position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; z-index: 0; top: -22vw; right: -14vw; width: 46vw; height: 46vw; max-width: 720px; max-height: 720px; border-radius: 50%; background: var(--yellow); opacity: .9; }
+.hero > .container { position: relative; z-index: 1; }
+.hero__photo { border-radius: 24px; overflow: hidden; }
+@media (max-width: 760px) { .hero::before { width: 70vw; height: 70vw; top: -30vw; right: -26vw; } .hero__photo { border-radius: 16px; } }
+
+/* セクションの背景はうすい黄色と白の交互 */
+.section--tint, .section--sand { background: var(--tint); }
+
+/* カード類: 角丸＋やわらかい影、枠線は薄く */
+.change, .plan, .price-card, .start, .review__item, .service--card, .recruit-card, .work-card__img, .monitor, .points--bg, .hub__item { border-radius: var(--radius); }
+.change { background: var(--yellow-soft); border: 0; box-shadow: none; }
+.change__icon, .service__icon { background: var(--surface); color: #2b2f36; box-shadow: inset 0 0 0 2px var(--yellow); }
+.change__before { color: var(--ink-2); }
+.service--card { border: 0; }
+.service__img { border-radius: var(--radius) var(--radius) 0 0; }
+.section--tint .point, .section--tint .point + .point { border-radius: var(--radius); }
+.section--tint .point__no, .section--sand .point__no { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--yellow); color: #2b2f36; font-size: 16px; }
+.flow li .mono, .flow__no, .biz-block__no, .review__no, .steps .mono, .positions .mono, .job__title .mono { color: var(--accent); }
+.price-card { border-top: 0; }
+.plan--main { border-color: var(--yellow); border-width: 2px; }
+.plan__tag, .monitor__label { background: var(--yellow); color: #2b2f36; border-radius: 999px; }
+.plan__tag { left: var(--sp-3); top: -14px; }
+.plan__list li::before { border-color: var(--yellow-2); }
+.monitor { background: var(--yellow-soft); border: 0; }
+.start { border-top: 0; background: var(--surface); }
+.status--open { color: var(--accent); }
+.news-list .tag, .post__meta .tag { color: var(--accent); border-radius: 999px; padding: 0 10px; }
+
+/* 料金の帯: うすい黄色 */
+.prices-strip { background: var(--yellow-soft); border: 0; border-radius: var(--radius); color: var(--ink); }
+.prices-strip__item, .prices-strip__item span, .prices-strip__item b { color: var(--ink); }
+.prices-strip__item span.prices-strip__v { color: var(--ink-2); }
+.prices-strip__item + .prices-strip__item { border-left-color: rgba(43,47,54,.12); border-top-color: rgba(43,47,54,.12); }
+
+/* 下層ページの見出し: 明るい地に黄色の円、写真は右に角丸で */
+.page-head--soft { position: relative; overflow: hidden; padding: var(--sp-5) 0; border-bottom: 0; background: var(--ground); }
+.page-head--soft::before { content: ""; position: absolute; top: -18vw; right: -10vw; width: 36vw; height: 36vw; max-width: 560px; max-height: 560px; border-radius: 50%; background: var(--yellow); opacity: .9; }
+.page-head__grid { position: relative; display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--sp-5); align-items: center; }
+.page-head__img { margin: 0; aspect-ratio: 16 / 10; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(43,47,54,.35); }
+.page-head__img img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 760px) {
+  .page-head__grid { grid-template-columns: 1fr; gap: var(--sp-3); }
+  .page-head--soft::before { width: 60vw; height: 60vw; top: -26vw; right: -24vw; }
+  .page-head__img { aspect-ratio: 16 / 9; border-radius: 14px; }
+}
+.post-banner { display: none; }
+
+/* お問い合わせの帯: チラシ下部と同じ黄色の帯 */
+.contact { background: var(--yellow); color: #2b2f36; }
+.contact::before { display: none; }
+.contact .label { color: rgba(43,47,54,.7); }
+.contact__title { color: #2b2f36; }
+.contact .btn { background: #2b2f36; color: #fff; }
+.contact .btn:hover { background: #000; color: #fff; }
+.contact__reply { color: rgba(43,47,54,.75); }
+
+/* フォーム */
+.form input[type="text"], .form input[type="email"], .form input[type="tel"], .form select, .form textarea { border-radius: 10px; }
+.req { background: var(--yellow); color: #2b2f36; border-radius: 4px; }
+.form :is(input, select, textarea):focus-visible { outline-color: var(--yellow-2); border-color: var(--yellow-2); }
+:focus-visible { outline-color: var(--yellow-2); }
+.about__photo, .portrait { border-radius: var(--radius); }
+.work__shot, .post__body figure { border-radius: 12px; overflow: hidden; }
