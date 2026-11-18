@@ -656,3 +656,4 @@ h4 { margin: 0; }
 .prices-strip__v { display: flex; align-items: baseline; gap: 4px; font-weight: 400; color: var(--ink-2); }
 .prices-strip__item span.prices-strip__v { font-weight: 400; color: var(--ink-2); min-width: 0; }
 @media (max-width: 560px) { .prices-strip__item, .prices-strip__item + .prices-strip__item { padding: var(--sp-2); } }
+.post__body img { width: 100%; height: auto; }

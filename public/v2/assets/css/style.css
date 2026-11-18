@@ -765,3 +765,4 @@ h4 { margin: 0; }
 .hero--v2 > .container { flex: 0 0 auto; width: 100%; }
 @media (min-width: 761px) { .hero--v2 .hero__photo { flex: none; } }
 .hero--v2::after { background: linear-gradient(180deg, rgba(10,20,34,.50) 0%, rgba(10,20,34,.38) 45%, rgba(10,20,34,.78) 100%); }
+.post__body img { width: 100%; height: auto; }
