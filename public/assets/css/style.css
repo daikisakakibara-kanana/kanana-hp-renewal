@@ -788,3 +788,37 @@ h4 { margin: 0; }
 /* 受託開発「できること」の間隔を詰める */
 .biz-block + .biz-block { margin-top: var(--sp-4); padding-top: var(--sp-4); }
 .form__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ==========================================================================
+   色の見直し: 差し色のオレンジをやめ、紺＋青緑の1色に。背景は2色だけ
+   ========================================================================== */
+:root {
+  --ground: #f7f8f9;
+  --tint: #edf2f4;          /* うすいグレーがかった青 */
+  --sand: var(--tint);
+  --warm: var(--accent);
+  --warm-ink: var(--on-ink);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --ground: #10161f; --tint: #172029; --sand: #172029; --warm: var(--accent); --warm-ink: var(--on-ink); }
+}
+:root[data-theme="dark"] { --ground: #10161f; --tint: #172029; --sand: #172029; --warm: var(--accent); --warm-ink: var(--on-ink); }
+
+/* ボタンは紺、ホバーで青緑 */
+.nav .btn, .btn--warm { background: var(--ink); color: var(--on-ink); }
+.nav .btn:hover, .btn--warm:hover { background: var(--accent); color: var(--on-ink); }
+.contact .btn { background: #fff; color: #16233a; }
+.contact .btn:hover { background: var(--accent); color: #fff; }
+/* アイコンの丸は青緑 */
+.change__icon, .service__icon { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
+/* 小さな見出しの英字は控えめな青緑 */
+.label { color: var(--accent); }
+/* 進め方の番号 */
+.section--sand .point__no, .section--tint .point__no { color: var(--accent); font-size: 24px; }
+.section--tint .points { border-color: transparent; gap: var(--sp-2); }
+.section--tint .point, .section--tint .point + .point { background: var(--surface); border: 0; padding: var(--sp-4) var(--sp-3); }
+/* 料金の強調 */
+.plan--main { border-color: var(--accent); }
+.plan__tag, .monitor__label { background: var(--accent); color: var(--on-ink); }
+.monitor { background: color-mix(in srgb, var(--accent) 6%, var(--surface)); border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
+.start { border-top-color: var(--accent); }
