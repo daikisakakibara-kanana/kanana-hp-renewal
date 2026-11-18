@@ -54,7 +54,7 @@ if (form) {
     }
     const endpoint = form.dataset.endpoint;
     if (!endpoint) {
-      status.textContent = 'このフォームは準備中のため、まだ送信できません。';
+      status.textContent = 'フォームは準備中です。お手数ですが daiki.sakakibara@kanana-tech.jp までメールでご連絡ください。';
       status.hidden = false;
       return;
     }
