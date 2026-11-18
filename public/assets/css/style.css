@@ -656,4 +656,134 @@ h4 { margin: 0; }
 .prices-strip__v { display: flex; align-items: baseline; gap: 4px; font-weight: 400; color: var(--ink-2); }
 .prices-strip__item span.prices-strip__v { font-weight: 400; color: var(--ink-2); min-width: 0; }
 @media (max-width: 560px) { .prices-strip__item, .prices-strip__item + .prices-strip__item { padding: var(--sp-2); } }
+
+/* ==========================================================================
+   v2: 写真と色を足した案
+   ========================================================================== */
+:root {
+  --warm: #e2692c;          /* 小田原のみかん色。ボタンと強調の差し色 */
+  --warm-ink: #ffffff;
+  --tint: #e5f0ec;          /* 薄い青緑の背景 */
+  --sand: #f4eee4;          /* 砂色の背景 */
+  --navy: #16233a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --warm: #f08a52; --warm-ink: #10161f; --tint: #16252a; --sand: #1d1b17; --navy: #0b111a; }
+}
+:root[data-theme="dark"] { --warm: #f08a52; --warm-ink: #10161f; --tint: #16252a; --sand: #1d1b17; --navy: #0b111a; }
+
+.section--tint { background: var(--tint); }
+.section--sand { background: var(--sand); }
+.section--tint + .section, .section--sand + .section, .section + .section--tint, .section + .section--sand { border-top: 0; }
+.label { color: var(--warm); }
+
+.btn--warm { background: var(--warm); color: var(--warm-ink); }
+.btn--warm:hover { background: var(--accent); color: var(--on-ink); }
+.btn--ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.7); }
+.btn--ghost:hover { background: rgba(255,255,255,.14); }
+.nav .btn { background: var(--warm); color: var(--warm-ink); }
+.nav .btn:hover { background: var(--accent); color: var(--on-ink); }
+
+/* トップ: 全面写真のヒーロー ------------------------------------------- */
+.hero--v2 { position: relative; overflow: hidden; color: #fff; padding: 0; min-height: calc(100svh - var(--header-h)); display: flex; align-items: flex-end; }
+.hero--v2 > .container { position: relative; z-index: 2; padding-block: var(--sp-6) clamp(48px, 10vh, 120px); }
+.hero--v2 .hero__photo { position: absolute; inset: 0; z-index: 0; margin: 0; max-height: none; min-height: 0; aspect-ratio: auto; background: var(--navy); }
+.hero--v2 .hero__photo picture, .hero--v2 .hero__photo img { width: 100%; height: 100%; }
+.hero--v2 .hero__photo img { object-fit: cover; object-position: 50% 55%; }
+.hero--v2::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,20,34,.05) 20%, rgba(10,20,34,.72) 100%); }
+.hero--v2 .hero__title { font-size: clamp(32px, 5vw, 64px); line-height: 1.35; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,.25); }
+.hero--v2 .hero__lead { color: rgba(255,255,255,.88); grid-column: 1 / span 7; }
+.hero__actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-4); }
+@media (max-width: 760px) {
+  .hero--v2 { min-height: 88svh; }
+  .hero--v2 > .container { padding-block: var(--sp-6) var(--sp-5); }
+  .hero--v2 .hero__photo { aspect-ratio: auto; }
+  .hero--v2 .hero__lead { grid-column: 1 / -1; }
+  .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
+}
+
+/* 事業: 写真つきカード ------------------------------------------------- */
+.services--cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); border-top: 0; }
+.service--card { display: flex; flex-direction: column; gap: var(--sp-2); padding: 0 0 var(--sp-3); background: var(--surface); border: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+.service--card > :not(.service__img) { margin-inline: var(--sp-3); }
+.service__img { display: block; aspect-ratio: 16 / 9; overflow: hidden; margin: 0 !important; }
+.service__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.service--card:hover .service__img img { transform: scale(1.03); }
+.service--card .service__link { justify-self: start; align-self: flex-start; margin-top: auto; }
+@media (prefers-reduced-motion: reduce) { .service__img img { transition: none; } }
+@media (max-width: 760px) { .services--cards { grid-template-columns: 1fr; } }
+
+/* 料金の帯 */
+.prices-strip { border-color: transparent; background: var(--navy); color: #fff; }
+.prices-strip__item, .prices-strip__item span, .prices-strip__item b, .prices-strip__v { color: #fff; }
+.prices-strip__item span.prices-strip__v { color: rgba(255,255,255,.75); }
+.prices-strip__item + .prices-strip__item { border-left-color: rgba(255,255,255,.2); border-top-color: rgba(255,255,255,.2); }
+.prices-strip__item b { color: #fff; }
+
+/* 進め方: 番号を大きく */
+.section--sand .point__no { font-size: 28px; color: var(--warm); letter-spacing: 0; }
+.section--sand .points { border-color: transparent; gap: var(--sp-2); }
+.section--sand .point, .section--sand .point + .point { background: var(--surface); border: 0; padding: var(--sp-4) var(--sp-3); }
+.section--sand .points { display: grid; }
+
+/* たとえば: アイコンをみかん色の丸に */
+.change__icon { background: color-mix(in srgb, var(--warm) 14%, transparent); color: var(--warm); }
+.service__icon { background: color-mix(in srgb, var(--warm) 14%, transparent); color: var(--warm); }
+
+/* 採用の帯: 写真 */
+.band--photo { position: relative; background-color: var(--navy); background-position: center; background-size: cover; background-repeat: no-repeat; color: #fff; }
+.band--photo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,20,34,.88) 0%, rgba(10,20,34,.55) 100%); }
+.band--photo .band__inner { position: relative; padding-block: var(--sp-6); }
+.band--photo h2 { font-size: var(--fs-section); color: #fff; }
+.band--photo .label { color: var(--warm); }
+.band--photo .text-link { color: #fff; border-color: rgba(255,255,255,.6); }
+
+/* お問い合わせの帯: グラデーションではなく紺に海の写真 */
+.contact { background: var(--navy) url('../img/hero-sea-pc-1200.jpg') center 60% / cover no-repeat; position: relative; }
+.contact::before { content: ""; position: absolute; inset: 0; background: rgba(10,20,34,.82); }
+.contact__inner { position: relative; }
+.contact .btn { background: var(--warm); color: var(--warm-ink); }
+.contact .btn:hover { background: #fff; color: var(--ink); }
+
+/* 下層ページの見出し: 写真の帯 ----------------------------------------- */
+.page-head--photo { position: relative; color: #fff; background-color: var(--navy); background-position: center; background-size: cover; background-repeat: no-repeat; border-bottom: 0; padding: clamp(96px, 14vw, 180px) 0 var(--sp-5); }
+.page-head--photo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,20,34,.35) 0%, rgba(10,20,34,.82) 100%); }
+.page-head--photo .container { position: relative; }
+.page-head--photo .page-head__title { color: #fff; }
+.page-head--photo .page-head__lead { color: rgba(255,255,255,.88); }
+.page-head--photo .crumb, .page-head--photo .crumb a { color: rgba(255,255,255,.7); }
+.post-banner { height: clamp(140px, 18vw, 220px); background-color: var(--navy); background-position: center; background-size: cover; background-repeat: no-repeat; position: relative; }
+.post-banner::after { content: ""; position: absolute; inset: 0; background: rgba(10,20,34,.45); }
+
+/* カード類にほんの少し影をつけ、背景色の上で浮かせる */
+.change, .plan, .price-card, .start, .review__item, .hub__item, .service--card { box-shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px -12px rgba(16,24,40,.12); }
+.plan--main { border-color: var(--warm); }
+.plan__tag { background: var(--warm); color: var(--warm-ink); }
+.monitor { background: color-mix(in srgb, var(--warm) 10%, var(--surface)); border-color: color-mix(in srgb, var(--warm) 40%, transparent); }
+.monitor__label { background: var(--warm); color: var(--warm-ink); }
+.start { border-top-color: var(--warm); }
+.hero--v2 > .container { flex: 0 0 auto; width: 100%; }
+@media (min-width: 761px) { .hero--v2 .hero__photo { flex: none; } }
+.hero--v2::after { background: linear-gradient(180deg, rgba(10,20,34,.50) 0%, rgba(10,20,34,.38) 45%, rgba(10,20,34,.78) 100%); }
 .post__body img { width: 100%; height: auto; }
+
+/* 採用への導線（明るいカード。お問い合わせの帯と離す） */
+.recruit-card { display: grid; grid-template-columns: 5fr 7fr; background: var(--surface); border: 1px solid var(--line); overflow: hidden; box-shadow: 0 1px 2px rgba(16,24,40,.05), 0 8px 24px -12px rgba(16,24,40,.12); }
+.recruit-card__img { display: block; min-height: 240px; }
+.recruit-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.recruit-card:hover .recruit-card__img img { transform: scale(1.03); }
+.recruit-card__body { display: flex; flex-direction: column; justify-content: center; gap: var(--sp-2); padding: var(--sp-5) var(--sp-5); }
+.recruit-card__body .label { margin: 0; }
+.recruit-card__title { font-size: var(--fs-section); font-weight: 700; line-height: 1.45; }
+.recruit-card__text { color: var(--ink-2); }
+.recruit-card .text-link { align-self: flex-start; margin-top: var(--sp-1); }
+.recruit-card:hover .text-link { color: var(--accent); border-color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .recruit-card__img img { transition: none; } }
+@media (max-width: 760px) {
+  .recruit-card { grid-template-columns: 1fr; }
+  .recruit-card__img { min-height: 0; aspect-ratio: 16 / 9; }
+  .recruit-card__body { padding: var(--sp-3); }
+}
+
+/* 受託開発「できること」の間隔を詰める */
+.biz-block + .biz-block { margin-top: var(--sp-4); padding-top: var(--sp-4); }

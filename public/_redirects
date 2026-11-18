@@ -1,0 +1,10 @@
+# STUDIO（旧サイト）のURL → 新サイト
+/service            /development   301
+/careers            /recruit       301
+/posts/DhiNdsqC     /news-kanana-works  301
+/posts/JU0fheMY     /news-ytubest       301
+/posts/YAoBa-KY     /news-sns           301
+/posts/news1        /news-website       301
+/posts/news3        /news-business-plan 301
+/posts/news2        /news-consultation  301
+/posts/*            /news          301

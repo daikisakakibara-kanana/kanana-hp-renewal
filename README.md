@@ -1,30 +1,22 @@
-# 株式会社Kanana HPリニューアル
+# 株式会社Kanana コーポレートサイト
 
-株式会社Kanana コーポレートサイトの刷新用リポジトリ。
+https://kanana-tech.jp （公開先: Cloudflare Pages。ドメインの契約はお名前.com、DNS は Cloudflare）
 
-## 方針
-- トップは要点だけ（ひとこと紹介・相談の例・サービス3つ・会社・お問い合わせ）。詳しい内容は下層ページへ
-- 文言は短く具体的に。「代表が直接〜」のような代表を売りにする表現は使わない
-- エンジニア向けは、社員採用（SES）よりフリーランスへの案件紹介（Kanana Works）を主にする
-- 小田原に本社がある会社として見せる
-
-## ページ構成（`public/`、静的HTML・ビルド不要）
+## 構成（`public/`、静的HTML・ビルド不要）
 - `index.html` トップ
-- `development.html` 受託開発（システム開発・ホームページ制作。できること・相談の例・流れ・料金・ご依頼にあたって）
-- `matching.html` エンジニア案件紹介（企業の方へ: SES・フリーランス紹介／エンジニアの方へ: Kanana Works）
-- `contact.html` お問い合わせフォーム（仮置き。送信先は未設定）
+- `development.html` 受託開発（できること・相談の例・流れ・料金・ご依頼にあたって）
+- `matching.html` エンジニア案件紹介（企業の方へ／エンジニアの方へ）
 - `company.html` 会社概要
 - `news.html` お知らせ一覧、`news-*.html` 各記事
 - `recruit.html` 採用情報
-- `assets/css/style.css` 共通CSS、`assets/js/main.js` メニューとページ移動時のスクロール
+- `contact.html` お問い合わせフォーム
+- `404.html` 見つからないページ
+- `_redirects` 旧サイト（STUDIO）のURLからの転送
+- `robots.txt`、`sitemap.xml`
+- `assets/css/style.css`、`assets/js/main.js`、`assets/img/`（`v2/` は各ページの見出しなどの写真）
 
-ヘッダーとフッターは全ページ同じ内容を直接書いている。変更するときは全ページを直す。
-
-### デザイン案 v2（`public/v2/`）
-今の案（ルート）はそのまま残し、写真と色を足した別案を `/v2/` に置いている。文章と構成は同じ。
-- HTML はルートのページをコピーしたもの。画像は `../assets/img/`（v2 用の写真は `assets/img/v2/`）を共有し、CSS・JS は `public/v2/assets/` に独立
-- 文章を直すときは、ルートと v2 の両方を直す。どちらかを採用したら、もう一方は削除する
-- v2 用の写真は Unsplash（images.unsplash.com から取得、Unsplash License）
+ヘッダーとフッターは全ページに同じ内容を直接書いている。変更するときは全ページを直す。
+お知らせを追加するときは、記事ページ（`news-*.html`）を作り、`news.html`・`index.html`（新しい3件）・`sitemap.xml` に追記する。
 
 ### 文章を編集したら
 日本語が言葉の途中で改行されないよう、文節の切れ目に `<wbr>` を入れている（CSS は `word-break: keep-all`）。
@@ -32,17 +24,28 @@
 
     python3 tools/add_wbr.py public/*.html
 
+## 公開の手順（初回）
+1. Cloudflare Pages: Workers & Pages → Create → Pages → Connect to Git → このリポジトリ。Build command は空欄、Build output directory は `public`
+2. `〜.pages.dev` で表示を確認
+3. Cloudflare に `kanana-tech.jp` を追加（Free）。読み込まれた DNS レコードに、メール（MX）や認証用の TXT が入っているか確認
+4. お名前.com Navi →「ネームサーバーの変更」→「他のネームサーバーを利用」に Cloudflare のネームサーバー2つを設定
+5. Cloudflare で Active になったら、Pages の Custom domains に `kanana-tech.jp` と `www.kanana-tech.jp` を追加
+6. `https://kanana-tech.jp` で新サイトを確認してから、STUDIO の独自ドメイン設定を外し、有料プランを解約
+
+以後は `main` に push すると自動で公開される。
 
 ## 画像
-- `assets/img/hero-sea-pc.jpg`（と `-pc-1200`）: トップの写真（PC、21:9に切り抜き）。`hero-sea-sp.jpg`: スマホ用（元画像の 3:2 のまま）。元画像は Unsplash の `photo-1518837695005-2083093ee35b` と同じ写真
+- `assets/img/hero-sea-*.jpg`: トップの写真
 - `assets/img/representative.jpg`: 代表写真
-- `assets/img/work-pioneer.jpg`: 実績（株式会社パイオニア）のスクリーンショット
+- `assets/img/v2/*.jpg`: 各ページの写真（Unsplash、images.unsplash.com から取得、Unsplash License）
+- `assets/img/ogp.jpg`: SNSで共有されたときの画像（1200×630）
+- `assets/img/work-*.jpg`: お知らせ記事のスクリーンショット
 
-## 公開（Cloudflare Pages）
-Workers & Pages → Create → Pages → Connect to Git → このリポジトリ。Build command は空欄、Build output directory は `public`。
+## 料金
+正本は Claude Docs「Kanana 料金・プラン一覧」。変えたら `development.html`・`index.html`・`docs/pricing.md` も直す。
 
 ## 残タスク
-- [ ] 料金は Claude Docs「Kanana 料金・プラン一覧」が正本。変えたらサイトと `docs/pricing.md` も直す
+- [ ] お問い合わせフォームの送信先を決め、`contact.html` の `data-endpoint` に設定（Formspree など）。未設定のあいだは「準備中」と表示して送信しない
 - [ ] お知らせ「ホームページ制作のご報告（株式会社パイオニア様）」の掲載についてクライアントの了承を得る（日付も公開日に合わせる）
-- [ ] お問い合わせフォームの送信先を決め、`contact.html` の `data-endpoint` に設定する（Formspree など）。未設定のあいだは「準備中」と表示して送信しない
-- [ ] 公開時に `<meta name="robots" content="noindex">` を外す
+- [ ] 料金・プラン一覧の修正案（入口のプラン・モニター価格など）の承認
+- [ ] 公開後、Google Search Console に `sitemap.xml` を登録
