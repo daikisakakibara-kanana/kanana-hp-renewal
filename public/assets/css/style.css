@@ -853,3 +853,33 @@ h4 { margin: 0; }
 @media (max-width: 760px) {
   .hero.hero--sea { min-height: calc(100svh - var(--header-h) - 40px); }
 }
+
+/* お問い合わせ帯: 背景は常に暗い写真なので、文字はダークモードでも白に固定 */
+.contact { color: #fff; }
+.contact .label { color: rgba(255, 255, 255, .64); }
+.contact__reply { color: rgba(255, 255, 255, .72); }
+
+/* 受託開発「できること」: 1列のとき、リスト最後の線と次の項目の区切り線が二重になるので最後の線を消す */
+@media (max-width: 960px) {
+  .biz-block__body li:last-child { border-bottom: 0; }
+}
+
+/* スマホの調整 -------------------------------------------------------------- */
+@media (max-width: 760px) {
+  /* 見出しと中身の間が空きすぎていたので詰める */
+  .section__head { margin-bottom: var(--sp-4); }
+  /* 「進め方」などのカード: 内側の余白を詰める */
+  .section--tint .point, .section--tint .point + .point,
+  .section--sand .point, .section--sand .point + .point { padding: 28px 20px; }
+  /* フッターのリンク: 指で押しやすい高さに（約40px） */
+  .footer__col li { line-height: 1.6; }
+  .footer__col a { display: block; padding-block: 10px; }
+  .footer__bottom { gap: 4px; }
+  /* お問い合わせフォーム: 同意欄を押しやすく、送信ボタンは横いっぱいに */
+  .form__agree label { min-height: 44px; }
+  .form__agree input { width: 22px; height: 22px; }
+  .form .btn { justify-self: stretch; justify-content: center; }
+  /* お問い合わせ帯のボタンも横いっぱいに */
+  .contact__action { justify-items: stretch; }
+  .contact .btn { justify-content: center; }
+}
