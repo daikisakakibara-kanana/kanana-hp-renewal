@@ -6,7 +6,6 @@
   if (!canvas || !window.THREE) return;
   const frame = canvas.parentElement;
   const hero = canvas.closest('.hero');
-  const pauseBtn = document.getElementById('sea-pause');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const narrowScreen = matchMedia('(max-width: 760px)').matches;
 
@@ -127,7 +126,8 @@
     }
   });
 
-  let t = 0, last = performance.now(), raf = 0, visible = true, paused = reduce;
+  let t = 0, last = performance.now(), raf = 0, visible = true;
+  const paused = reduce; // 動きを減らす設定の人には止まった海
   function draw(now) {
     const dt = Math.min((now - last) / 1000, 0.05); last = now;
     if (!paused) t += dt * CFG.speed;
@@ -153,15 +153,6 @@
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) kick(); }).observe(frame);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
 
-  function setPaused(v) {
-    paused = v;
-    pauseBtn.textContent = v ? '波を動かす' : '波を止める';
-    pauseBtn.setAttribute('aria-pressed', v ? 'true' : 'false');
-    if (!v) kick();
-  }
-  pauseBtn.hidden = false;
-  pauseBtn.addEventListener('click', () => setPaused(!paused));
-  setPaused(paused);
 
   resize();
   document.documentElement.classList.add('sea-ready');
