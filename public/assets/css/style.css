@@ -2,7 +2,9 @@
    Kanana Foundations
    色・文字サイズ・余白は、ここにある値以外を使わない。増やすときは先にここを直す。
    ========================================================================== */
+/* 配色はライトのみ（端末がダークモードでもPCと同じ明るい配色で表示する） */
 :root {
+  color-scheme: only light;
   --header-h: 76px;
 
   /* Color */
@@ -44,22 +46,6 @@
   --container: 1160px;
   --gutter: clamp(16px, 4vw, 40px);
   --col-gap: 24px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ground: #10161f; --ground-2: #17202b; --surface: #1b2531;
-    --ink: #e8edf0; --ink-2: rgba(232, 237, 240, 0.76); --ink-3: rgba(232, 237, 240, 0.56);
-    --line: rgba(232, 237, 240, 0.13); --line-strong: rgba(232, 237, 240, 0.3);
-    --accent: #4cc3ae; --accent-soft: rgba(76, 195, 174, 0.12); --on-ink: #10161f;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --ground: #10161f; --ground-2: #17202b; --surface: #1b2531;
-    --ink: #e8edf0; --ink-2: rgba(232, 237, 240, 0.76); --ink-3: rgba(232, 237, 240, 0.56);
-    --line: rgba(232, 237, 240, 0.13); --line-strong: rgba(232, 237, 240, 0.3);
-    --accent: #4cc3ae; --accent-soft: rgba(76, 195, 174, 0.12); --on-ink: #10161f;
-  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -667,10 +653,6 @@ h4 { margin: 0; }
   --sand: #f4eee4;          /* 砂色の背景 */
   --navy: #16233a;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --warm: #f08a52; --warm-ink: #10161f; --tint: #16252a; --sand: #1d1b17; --navy: #0b111a; }
-}
-:root[data-theme="dark"] { --warm: #f08a52; --warm-ink: #10161f; --tint: #16252a; --sand: #1d1b17; --navy: #0b111a; }
 
 .section--tint { background: var(--tint); }
 .section--sand { background: var(--sand); }
@@ -799,10 +781,6 @@ h4 { margin: 0; }
   --warm: var(--accent);
   --warm-ink: var(--on-ink);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --ground: #10161f; --tint: #172029; --sand: #172029; --warm: var(--accent); --warm-ink: var(--on-ink); }
-}
-:root[data-theme="dark"] { --ground: #10161f; --tint: #172029; --sand: #172029; --warm: var(--accent); --warm-ink: var(--on-ink); }
 
 /* ボタンは紺、ホバーで青緑 */
 .nav .btn, .btn--warm { background: var(--ink); color: var(--on-ink); }
